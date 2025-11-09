@@ -44,7 +44,10 @@ else if(isset($_GET['bo_table']) && !empty($_GET['bo_table'])) {
         // 후원 관련 (m3)
         'sponsor' => 'm3',
         'sponsor2' => 'm3',
-        'spon_news' => 'm3'
+        'spon_news' => 'm3',
+        
+        // 봉사안내 (m4)
+        'volunteer' => 'm4'
     );
     
     if(isset($board_to_menu[$bo_table])) {

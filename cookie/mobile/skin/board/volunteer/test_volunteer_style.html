@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자원봉사 게시판 스타일 테스트</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🙋‍♀️ 자원봉사 게시판 스타일 테스트</h1>
+        
+        <div class="test-section">
+            <h2>📝 자원봉사 신청 폼</h2>
+            <div class="step-body">
+                <div class="content-title">자원봉사 정보</div>
+                <div class="row">
+                    <div class="col w25">자원봉사 유형</div>
+                    <div class="col w75">
+                        <div class="radio_group">
+                            <label><input type="radio" name="volunteer_type" value="1"> 교육 지원</label>
+                            <label><input type="radio" name="volunteer_type" value="2"> 환경 보호</label>
+                            <label><input type="radio" name="volunteer_type" value="3"> 복지 활동</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col w25">성명</div>
+                    <div class="col w75">
+                        <input type="text" class="frm_input" placeholder="성명을 입력하세요">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col w25">연락처</div>
+                    <div class="col w75">
+                        <input type="tel" class="frm_input" placeholder="연락처를 입력하세요">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col w25">참여 가능 일정</div>
+                    <div class="col w75">
+                        <div class="checkbox_group">
+                            <label><input type="checkbox" name="schedule" value="weekday"> 평일</label>
+                            <label><input type="checkbox" name="schedule" value="weekend"> 주말</label>
+                            <label><input type="checkbox" name="schedule" value="evening"> 저녁시간</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col w25">신청 동기</div>
+                    <div class="col w75">
+                        <textarea class="frm_input" rows="4" placeholder="자원봉사 신청 동기를 작성해주세요"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="submit-body">
+                <button class="btn btn_b02" type="submit">자원봉사 신청하기</button>
+                <button class="btn" type="button">목록으로 돌아가기</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 게시판 목록</h2>
+            <div class="tbl_head01">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="td_num">번호</th>
+                            <th>제목</th>
+                            <th class="td_name">작성자</th>
+                            <th class="td_datetime">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bo_notice">
+                            <td class="td_num">공지</td>
+                            <td>2024년 자원봉사 활동 안내</td>
+                            <td class="td_name">관리자</td>
+                            <td class="td_datetime">2024-11-10</td>
+                        </tr>
+                        <tr>
+                            <td class="td_num">15</td>
+                            <td>환경보호 자원봉사 참여 후기</td>
+                            <td class="td_name">홍길동</td>
+                            <td class="td_datetime">2024-11-09</td>
+                        </tr>
+                        <tr>
+                            <td class="td_num">14</td>
+                            <td>교육 지원 봉사활동 신청합니다</td>
+                            <td class="td_name">김영희</td>
+                            <td class="td_datetime">2024-11-08</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pg_wrap">
+                <div class="pg">
+                    <a href="#" class="sound_only">처음</a>
+                    <a href="#" class="sound_only">이전</a>
+                    <a href="#">1</a>
+                    <a href="#" class="current">2</a>
+                    <a href="#">3</a>
+                    <a href="#" class="sound_only">다음</a>
+                    <a href="#" class="sound_only">마지막</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>💬 댓글 시스템</h2>
+            <div id="bo_vc">
+                <div class="cmt_contents">
+                    <div class="comment_profile_img">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23ddd'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='white' font-size='16'%3E👤%3C/text%3E%3C/svg%3E" alt="프로필">
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <div class="bo_vc_hdinfo">
+                            <strong>김자원</strong> | 2024-11-10 14:30
+                        </div>
+                        <p>환경보호 활동에 참여하고 싶습니다. 언제 신청 가능한가요?</p>
+                    </div>
+                </div>
+                
+                <div class="bo_vc_w">
+                    <h2>댓글 작성</h2>
+                    <textarea placeholder="댓글을 작성해주세요..."></textarea>
+                    <div class="bo_vc_w_wr">
+                        <div class="bo_vc_w_info">
+                            <input type="text" placeholder="이름" style="width: 150px;">
+                            <input type="password" placeholder="비밀번호" style="width: 150px;">
+                        </div>
+                        <div class="btn_confirm">
+                            <div class="bo_chk">
+                                <input type="checkbox" id="wr_secret">
+                                <label for="wr_secret">비밀댓글</label>
+                            </div>
+                            <button type="submit" class="btn_submit">댓글 등록</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>✅ 메시지 컴포넌트</h2>
+            <div class="success-message">
+                ✨ 자원봉사 신청이 완료되었습니다!
+            </div>
+            
+            <div class="info-message">
+                ℹ️ 자원봉사 활동 전 필수 교육을 받아야 합니다.
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div class="loading"></div>
+                <p>처리 중...</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎨 Primary Color (#F7B825) 사용 예시</h2>
+            <p>이 스타일 시트는 <strong style="color: var(--primary-color);">#F7B825</strong> 색상을 primary color로 사용합니다.</p>
+            <div style="display: flex; gap: 15px; margin: 20px 0;">
+                <button class="btn btn_b01">성공 버튼</button>
+                <button class="btn btn_b02">Primary 버튼</button>
+                <button class="btn">기본 버튼</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 페이지네이션 현재 페이지 표시
+        document.querySelectorAll('.pg a').forEach(link => {
+            if (link.classList.contains('current')) {
+                link.style.backgroundColor = 'var(--primary-color)';
+                link.style.color = '#fff';
+                link.style.borderColor = 'var(--primary-color)';
+            }
+        });
+        
+        // 간단한 상호작용 테스트
+        document.querySelector('.btn_submit').addEventListener('click', function() {
+            alert('댓글이 등록되었습니다! (테스트)');
+        });
+    </script>
+</body>
+</html>

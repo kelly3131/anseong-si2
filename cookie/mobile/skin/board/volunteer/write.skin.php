@@ -5,6 +5,89 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">', 0);
 ?>
 
+<style>
+/* 라디오 버튼 스타일링 강화 - sponsor와 완전히 동일 */
+input[type="radio"], input[type="checkbox"] {
+    accent-color: var(--primary-color) !important;
+    margin: 0 !important;
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border: 2px solid #ddd !important;
+    border-radius: 50% !important;
+    background: white !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+}
+
+input[type="radio"]:checked {
+    border-color: var(--primary-color) !important;
+    background: white !important;
+}
+
+input[type="radio"]:checked::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: var(--primary-color) !important;
+}
+
+input[type="radio"]:focus {
+    outline: 2px solid var(--primary-color) !important;
+    outline-offset: 2px !important;
+}
+
+/* 체크박스 스타일 */
+input[type="checkbox"] {
+    border-radius: 3px !important;
+}
+
+input[type="checkbox"]:checked {
+    border-color: var(--primary-color) !important;
+    background: var(--primary-color) !important;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '✓' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+</style>
+
+<script>
+// 브라우저 호환성을 위한 JavaScript 강제 스타일 적용
+document.addEventListener('DOMContentLoaded', function() {
+    // 모든 라디오 버튼과 체크박스에 강제로 primary color 적용
+    const inputs = document.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+    
+    inputs.forEach(function(input) {
+        // CSS가 적용되지 않는 경우를 대비한 강제 스타일
+        input.style.accentColor = '#F7B825';
+        
+        // 체크 상태 변경 시 색상 재적용
+        input.addEventListener('change', function() {
+            if (this.checked) {
+                this.style.accentColor = '#F7B825';
+                this.style.borderColor = '#F7B825';
+            }
+        });
+    });
+});
+</script>
+
 <?php // 게시판 관리의 상단 내용
 if (G5_IS_MOBILE) {
   echo '<div class="bo_top_img">';
@@ -18,197 +101,215 @@ if (G5_IS_MOBILE) {
   <div class="nav_wr"><a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; <?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']); ?> </div>
 </div>
 
-<section id="bo_w">
+<section id="bo_w" class="new-main-container">
+  <div class="new-form-container">
+    <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
+      <input type="hidden" name="w" value="<?php echo $w ?>">
+      <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+      <input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
+      <input type="hidden" name="sca" value="<?php echo $sca ?>">
+      <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
+      <input type="hidden" name="stx" value="<?php echo $stx ?>">
+      <input type="hidden" name="spt" value="<?php echo $spt ?>">
+      <input type="hidden" name="sst" value="<?php echo $sst ?>">
+      <input type="hidden" name="sod" value="<?php echo $sod ?>">
+      <input type="hidden" name="page" value="<?php echo $page ?>">
 
-  <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
-    <input type="hidden" name="w" value="<?php echo $w ?>">
-    <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
-    <input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
-    <input type="hidden" name="sca" value="<?php echo $sca ?>">
-    <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
-    <input type="hidden" name="stx" value="<?php echo $stx ?>">
-    <input type="hidden" name="spt" value="<?php echo $spt ?>">
-    <input type="hidden" name="sst" value="<?php echo $sst ?>">
-    <input type="hidden" name="sod" value="<?php echo $sod ?>">
-    <input type="hidden" name="page" value="<?php echo $page ?>">
-
-    <div class="b-row">
-      <div class="b-row submit-body">
-        <div class="step-body clearfix">
-          <div class="row">
-            <div class="row">
-              <div class="col w25"><span>성명</span></div>
-              <div class="col w75">
-                <label for="wr_name" class="sound_only">성명<strong>필수</strong></label>
-                <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input full_input required" maxlength="20" placeholder="성명">
-              </div>
-              <div class="row">
-                <div class="col w25"><span>생년월일(사업자번호)</span></div>
-                <div class="col w75">
-                  <label for="wr_1" class="sound_only">생년월일(사업자번호)<strong>필수</strong></label>
-                  <input type="text" name="wr_1" value="<?php echo $wr_1 ?>" id="wr_1" required class="frm_input required" minlength="6" maxlength="12" placeholder="생년월일(사업자번호)">
-                </div>
-              </div>
-            </div>
-            <div>
-              <?php if ($is_email) { ?>
-                <div class="row">
-                  <div class="col w25"><span>이메일</span></div>
-                  <div class="col w75"> <label for="wr_email" class="sound_only">이메일</label>
-                    <input type="email" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input full_input  email" maxlength="100" placeholder="이메일">
-                  </div>
-                </div>
-              <?php } ?>
-            </div>
-            <div class="row">
-              <div class="col w25"><span>주소</span></div>
-              <div class="col w75">
-                <input name="member_post" id="member_post" class="frm_input full_input" style="width: auto;min-width: 50px;line-height: 1;" type="text" placeholder="우편번호" readonly onclick="findAddr()">
-                <input name="member_addr" id="member_addr" class="frm_input full_input" type="text" placeholder="주소" readonly onclick="findAddr()"> <br>
-                <input name="member_detail" id="member_detail" class="frm_input full_input" type="text" placeholder="나머지주소">
-                <input name="member_etc" id="member_etc" class="frm_input full_input" type="text" placeholder="참고항목">
-                <script>
-                  function findAddr() {
-                    new daum.Postcode({
-                      oncomplete: function(data) {
-
-                        console.log(data);
-
-                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                        var roadAddr = data.roadAddress; // 도로명 주소 변수
-                        var jibunAddr = data.jibunAddress; // 지번 주소 변수
-                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                        document.getElementById('member_post').value = data.zonecode;
-                        if (roadAddr !== '') {
-                          document.getElementById("member_addr").value = roadAddr;
-                        } else if (jibunAddr !== '') {
-                          document.getElementById("member_addr").value = jibunAddr;
-                        }
-                      }
-                    }).open();
-                  }
-                </script>
-                <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-                <label for="place" class="sound_only">주소</label>
-                <input type="hidden" name="place" value="<?php echo $place ?>" id="place" class="frm_input full_input"
-                  maxlength="255" placeholder="주소">
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col w25"><span>자택전화</span></div>
-              <div class="col w75">
-                <label for="wr_link1" class="sound_only">자택전화</label>
-                <select class="col w25" name="tel_1" id="tel_1" required style="width: 80px;">
-                  <option value="02" selected="selected">02</option>
-                  <option value="031">031</option>
-                  <option value="032">032</option>
-                  <option value="033">033</option>
-                  <option value="041">041</option>
-                  <option value="042">042</option>
-                  <option value="043">043</option>
-                  <option value="044">044</option>
-                  <option value="051">051</option>
-                  <option value="052">052</option>
-                  <option value="053">053</option>
-                  <option value="054">054</option>
-                  <option value="055">055</option>
-                  <option value="061">061</option>
-                  <option value="062">062</option>
-                  <option value="063">063</option>
-                  <option value="064">064</option>
-                  <option value="050">050</option>
-                  <option value="070">070</option>
-                </select>-
-                <input type="text" name="tel_2" id="tel_2" class="frm_input" maxlength="4" style="width: 80px;">-
-                <input type="text" name="tel_3" id="tel_3" class="frm_input" maxlength="4" style="width: 80px;">
-                <input type="hidden" name="wr_link1" id="wr_link1" class="frm_input full_input" maxlength="14" placeholder="전화번호">
-              </div>
-            </div>
-            <!--
-          <?php if ($is_password) { ?>
-				  <div class="row">
-            <div class="col w25"><span>비밀번호</span></div>
-            <div class="col w75">
-              <label for="wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
-              <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input full_input <?php echo $password_required ?>" maxlength="20" placeholder="비밀번호"> 
-            </div>
+      <div class="new-grid new-grid-1">
+        <div class="new-field-group">
+          <label for="wr_name" class="new-field-label required">성명</label>
+          <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="new-field-input" maxlength="20" placeholder="성명을 입력해주세요">
+        </div>
+        
+        <div class="new-field-group">
+          <label for="wr_1" class="new-field-label required">생년월일(사업자번호)</label>
+          <input type="text" name="wr_1" value="<?php echo $wr_1 ?>" id="wr_1" required class="new-field-input" minlength="6" maxlength="12" placeholder="생년월일 또는 사업자번호를 입력해주세요">
+        </div>
+        <?php if ($is_email) { ?>
+        <div class="new-field-group">
+          <label for="wr_email" class="new-field-label">이메일</label>
+          <input type="email" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="new-field-input" maxlength="100" placeholder="이메일 주소를 입력해주세요">
+        </div>
+        <?php } ?>
+        
+        <div class="new-field-group">
+          <label class="new-field-label required">주소</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input name="member_post" id="member_post" class="new-field-input" style="width: 120px;" type="text" placeholder="우편번호" readonly onclick="findAddr()">
+            <button type="button" onclick="findAddr()" class="new-btn new-btn-outline" style="padding: 10px 20px; font-size: 14px;">주소찾기</button>
           </div>
-          <?php } ?>
-          -->
-            <div class="row">
-              <div class="col w25"><span>휴대폰</span></div>
-              <div class="col w75">
-                <label for="wr_link2" class="sound_only">휴대폰</label>
-                <select class="col w25" name="hp_1" id="hp_1" required style="width: 80px;">
-                  <option value="010" selected="selected">010</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                  <option value="018">018</option>
-                  <option value="019">019</option>
-                </select>-
-                <input type="text" name="hp_2" id="hp_2" class="frm_input required" maxlength="4" style="width: 80px;" placeholder="휴대폰">-
-                <input type="text" name="hp_3" id="hp_3" class="frm_input required" maxlength="4" style="width: 80px;" placeholder="휴대폰">
-                <input type="hidden" name="wr_link2" id="wr_link2" class="frm_input full_input" maxlength="14" placeholder="휴대폰">
-              </div>
-            </div>
+          <input name="member_addr" id="member_addr" class="new-field-input" type="text" placeholder="기본 주소" readonly onclick="findAddr()" style="margin-bottom: 10px;">
+          <input name="member_detail" id="member_detail" class="new-field-input" type="text" placeholder="상세 주소" style="margin-bottom: 10px;">
+          <input name="member_etc" id="member_etc" class="new-field-input" type="text" placeholder="참고항목 (선택사항)">
+          
+          <script>
+            function findAddr() {
+              new daum.Postcode({
+                oncomplete: function(data) {
+                  console.log(data);
+                  
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                  // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var roadAddr = data.roadAddress; // 도로명 주소 변수
+                  var jibunAddr = data.jibunAddress; // 지번 주소 변수
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('member_post').value = data.zonecode;
+                  if (roadAddr !== '') {
+                    document.getElementById("member_addr").value = roadAddr;
+                  } else if (jibunAddr !== '') {
+                    document.getElementById("member_addr").value = jibunAddr;
+                  }
+                  // 상세주소 입력 칸에 포커스
+                  document.getElementById('member_detail').focus();
+                }
+              }).open();
+            }
+          </script>
+          <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+          
+          <input type="hidden" name="place" value="<?php echo $place ?>" id="place" maxlength="255">
+        </div>
+        
+        <div class="new-field-group">
+          <label class="new-field-label required">자택전화</label>
+          <div style="display: flex; gap: 5px; align-items: center;">
+            <select name="tel_1" id="tel_1" required class="new-field-input" style="width: 100px;">
+              <option value="02" selected="selected">02</option>
+              <option value="031">031</option>
+              <option value="032">032</option>
+              <option value="033">033</option>
+              <option value="041">041</option>
+              <option value="042">042</option>
+              <option value="043">043</option>
+              <option value="044">044</option>
+              <option value="051">051</option>
+              <option value="052">052</option>
+              <option value="053">053</option>
+              <option value="054">054</option>
+              <option value="055">055</option>
+              <option value="061">061</option>
+              <option value="062">062</option>
+              <option value="063">063</option>
+              <option value="064">064</option>
+              <option value="050">050</option>
+              <option value="070">070</option>
+            </select>
+            <span>-</span>
+            <input type="text" name="tel_2" id="tel_2" class="new-field-input" maxlength="4" style="width: 100px;" placeholder="0000">
+            <span>-</span>
+            <input type="text" name="tel_3" id="tel_3" class="new-field-input" maxlength="4" style="width: 100px;" placeholder="0000">
+            <input type="hidden" name="wr_link1" id="wr_link1" maxlength="14">
+          </div>
+        </div>
+        
+        <?php if ($is_password) { ?>
+        <div class="new-field-group">
+          <label for="wr_password" class="new-field-label required">비밀번호</label>
+          <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="new-field-input" maxlength="20" placeholder="비밀번호를 입력해주세요">
+        </div>
+        <?php } ?>
+        
+        <div class="new-field-group">
+          <label class="new-field-label required">휴대폰</label>
+          <div style="display: flex; gap: 5px; align-items: center;">
+            <select name="hp_1" id="hp_1" required class="new-field-input" style="width: 100px;">
+              <option value="010" selected="selected">010</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            <span>-</span>
+            <input type="text" name="hp_2" id="hp_2" class="new-field-input" required maxlength="4" style="width: 100px;" placeholder="0000">
+            <span>-</span>
+            <input type="text" name="hp_3" id="hp_3" class="new-field-input" required maxlength="4" style="width: 100px;" placeholder="0000">
+            <input type="hidden" name="wr_link2" id="wr_link2" maxlength="14">
+          </div>
+        </div>
+        
+        <div class="new-field-group">
+          <label for="wr_2" class="new-field-label">최종학력</label>
+          <input type="text" name="wr_2" value="<?php echo $wr_2 ?>" id="wr_2" class="new-field-input" maxlength="50" placeholder="최종학력을 입력해주세요 (선택사항)">
+        </div>
 
-            
-            <div class="row">
-              <div class="col w25"><span>최종학력</span></div>
-              <div class="col w75">
-                <label for="wr_2" class="sound_only">최종학력</label>
-                <input type="text" name="wr_2" value="<?php echo $wr_2 ?>" id="wr_2" class="frm_input full_input" maxlength="50" placeholder="최종학력">
-              </div>
-            </div>
+        <div class="new-field-group">
+          <label for="wr_3" class="new-field-label">직업</label>
+          <input type="text" name="wr_3" value="<?php echo $wr_3 ?>" id="wr_3" class="new-field-input" maxlength="100" placeholder="현재 직업을 입력해주세요">
+        </div>
 
-            <div class="row">
-              <div class="col w25"><span>직업</span></div>
-              <div class="col w75">
-                <label for="wr_3" class="sound_only">직업</label>
-                <input type="text" name="wr_3" value="<?php echo $wr_3 ?>" id="wr_3"
-                  class="frm_input full_input" maxlength="100" placeholder="직업">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col w25"><span>참여동기</span></div>
-              <div class="col w75">
-                <label><input type="radio" name="wr_4" id="wr_40" value="0" class="frm_input" checked>이웃에 봉사</label>
-                <label><input type="radio" name="wr_4" id="wr_41" value="1" class="frm_input">보람된 여가선용</label>
-                <label><input type="radio" name="wr_4" id="wr_42" value="2" class="frm_input">자기발전</label>
-                <label><input type="radio" name="wr_4" id="wr_43" value="3" class="frm_input">사회적 경험</label>
-                <label><input type="radio" name="wr_4" id="wr_44" value="4" class="frm_input">종교적 신념</label>
-                <label><input type="radio" name="wr_4" id="wr_45" value="5" class="frm_input">지역사회 발전</label>
-                <label><input type="radio" name="wr_4" id="wr_46" value="6" class="frm_input">기타</label>
-              </div>
-            </div>
-            <div class="row" style="padding: 10px 0;">
-              <div class="col w25"><span>희망분야</span></div>
-              <div class="col w75">
-                <div class="row" style="padding-bottom: 10px;">
-                  <input class="img" type="checkbox" name="cb_5" id="cb_50" value="경로식당 배식 및 조리">
-                  <label for="wr_50">경로식당 배식 및 조리</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_51" value="이·미용">
-                  <label for="wr_51">이·미용</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_52" value="밑반찬배달">
-                  <label for="wr_52">밑반찬배달</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_53" value="프로그램지원">
-                  <label for="wr_53">프로그램지원</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_54" value="업무보조">
-                  <label for="wr_54">업무보조</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_55" value="재능나눔">
-                  <label for="wr_55">재능나눔</label>
-                  <input class="img" type="checkbox" name="cb_5" id="cb_56" value="기타">
-                  <label for="wr_56">기타</label>
-                  <input type="hidden" id="wr_5" name="wr_5">
-                  (<input type="text" id="wr_6" name="wr_6" placeholder="기타분야" style="width: 100px;">)
-                </div>
-              </div>
-            </div>
+        <div class="new-field-group">
+          <label class="new-field-label required">참여동기</label>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_40" value="0" checked style="margin: 0;">
+              <span>이웃에 봉사</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_41" value="1" style="margin: 0;">
+              <span>보람된 여가선용</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_42" value="2" style="margin: 0;">
+              <span>자기발전</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_43" value="3" style="margin: 0;">
+              <span>사회적 경험</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_44" value="4" style="margin: 0;">
+              <span>종교적 신념</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_45" value="5" style="margin: 0;">
+              <span>지역사회 발전</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="radio" name="wr_4" id="wr_46" value="6" style="margin: 0;">
+              <span>기타</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="new-field-group">
+          <label class="new-field-label required">희망분야</label>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_50" value="경로식당 배식 및 조리" style="margin: 0;">
+              <span>경로식당 배식 및 조리</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_51" value="이·미용" style="margin: 0;">
+              <span>이·미용</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_52" value="밑반찬배달" style="margin: 0;">
+              <span>밑반찬배달</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_53" value="프로그램지원" style="margin: 0;">
+              <span>프로그램지원</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_54" value="업무보조" style="margin: 0;">
+              <span>업무보조</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_55" value="재능나눔" style="margin: 0;">
+              <span>재능나눔</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" name="cb_5" id="cb_56" value="기타" style="margin: 0;">
+              <span>기타</span>
+            </label>
+          </div>
+          <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+            <span>기타 분야:</span>
+            <input type="text" id="wr_6" name="wr_6" placeholder="기타분야를 입력해주세요" class="new-field-input" style="flex: 1;">
+          </div>
+          <input type="hidden" id="wr_5" name="wr_5">
+        </div>
 
             <div class="row">
               <div class="col w25"><span>활동시간</span></div>

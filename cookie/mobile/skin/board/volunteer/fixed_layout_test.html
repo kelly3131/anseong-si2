@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자원봉사 게시판 - 레이아웃 수정 테스트</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        /* 디버깅용 */
+        .debug {
+            border: 1px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 이미지 (모바일에서는 숨김) -->
+    <div class="bo_top_img">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' viewBox='0 0 1200 300'%3E%3Crect width='1200' height='300' fill='%23F7B825'/%3E%3Ctext x='600' y='160' text-anchor='middle' fill='white' font-size='36' font-weight='bold'%3E자원봉사 게시판%3C/text%3E%3C/svg%3E" alt="배경 이미지">
+    </div>
+
+    <!-- 네비게이션 -->
+    <div id="nav">
+        <div class="nav_wr">
+            <a href="#">🏠 HOME</a> &gt; 자원봉사 게시판
+        </div>
+    </div>
+
+    <!-- 메인 컨테이너 -->
+    <div class="container clearfix">
+        <div class="inner">
+            
+            <!-- 카테고리 네비게이션 -->
+            <nav id="bo_cate">
+                <h2>자원봉사 게시판 카테고리</h2>
+                <ul>
+                    <li><a href="#" id="bo_cate_on">전체</a></li>
+                    <li><a href="#">교육지원</a></li>
+                    <li><a href="#">환경보호</a></li>
+                    <li><a href="#">복지활동</a></li>
+                    <li><a href="#">재해구호</a></li>
+                </ul>
+            </nav>
+
+            <!-- 게시판 목록 -->
+            <div id="bo_list">
+                
+                <!-- 검색 폼 -->
+                <fieldset id="bo_sch">
+                    <legend>게시물 검색</legend>
+                    <form name="fsearch" method="get">
+                        <select name="sfl">
+                            <option value="wr_name,1">글쓴이</option>
+                            <option value="wr_subject">제목</option>
+                            <option value="wr_content">내용</option>
+                        </select>
+                        <input name="stx" value="" placeholder="검색어를 입력하세요" class="sch_input">
+                        <button type="submit" class="sch_btn">🔍</button>
+                    </form>
+                </fieldset>
+
+                <!-- 전체 선택 -->
+                <div class="all_chk">
+                    <input type="checkbox" id="chkall">
+                    <label for="chkall">전체선택</label>
+                </div>
+
+                <!-- 게시글 목록 -->
+                <div class="board_list">
+                    <ul>
+                        <li class="bo_notice">
+                            <div class="bo_subject">
+                                <a href="#">
+                                    <strong class="notice_icon">[공지]</strong> 
+                                    2024년 자원봉사 활동 안내 및 참여 신청 방법
+                                </a>
+                            </div>
+                            <div class="bo_info">
+                                <span class="bo_date">📅 24-11-10</span>
+                                <span>💬 5</span>
+                                <span>👍 12</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bo_subject">
+                                <a href="#">
+                                    환경보호 자원봉사 참여 후기 - 한강 정화 활동 
+                                    <span class="new_icon">N</span>
+                                </a>
+                            </div>
+                            <div class="bo_info">
+                                <span class="bo_date">📅 24-11-09</span>
+                                <span>💬 3</span>
+                                <span>👍 8</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bo_subject">
+                                <a href="#">교육 지원 봉사활동 신청합니다 (초등학생 대상)</a>
+                            </div>
+                            <div class="bo_info">
+                                <span class="bo_date">📅 24-11-08</span>
+                                <span>💬 1</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bo_subject">
+                                <a href="#">독거노인 도시락 배달 봉사 참가 희망합니다</a>
+                            </div>
+                            <div class="bo_info">
+                                <span class="bo_date">📅 24-11-07</span>
+                                <span>💬 2</span>
+                                <span>👍 5</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bo_subject">
+                                <a href="#">장애인 복지관 행사 도우미 모집 안내</a>
+                            </div>
+                            <div class="bo_info">
+                                <span class="bo_date">📅 24-11-06</span>
+                                <span>💬 8</span>
+                                <span>👍 15</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="pg_wrap">
+                    <div class="pg">
+                        <a href="#">◀◀</a>
+                        <a href="#">◀</a>
+                        <a href="#">1</a>
+                        <a href="#" class="current">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">▶</a>
+                        <a href="#">▶▶</a>
+                    </div>
+                </div>
+
+                <!-- 하단 버튼 -->
+                <div class="bo_fx">
+                    <ul class="btn_bo_adm">
+                        <li><a href="#" class="btn btn_b01">📋 신청목록</a></li>
+                        <li><a href="#" class="btn">🗑️ 선택삭제</a></li>
+                    </ul>
+                    <ul class="btn_wr">
+                        <li><a href="#" class="btn btn_b02">✏️ 자원봉사 신청하기</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <!-- 자원봉사 신청 폼 예제 -->
+            <section id="bo_w" style="margin-top: 50px;">
+                <form name="fwrite" method="post">
+                    <div class="submit-body">
+                        <div class="content-title">🙋‍♀️ 자원봉사 신청서</div>
+                        
+                        <div class="step-body">
+                            <div class="row">
+                                <div class="col w25"><span>성명 *</span></div>
+                                <div class="col w75">
+                                    <input type="text" name="wr_name" class="frm_input required" placeholder="성명을 입력하세요" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col w25"><span>연락처 *</span></div>
+                                <div class="col w75">
+                                    <input type="tel" class="frm_input" placeholder="예) 010-1234-5678" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col w25"><span>이메일</span></div>
+                                <div class="col w75">
+                                    <input type="email" class="frm_input" placeholder="example@email.com">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col w25"><span>자원봉사 유형 *</span></div>
+                                <div class="col w75">
+                                    <div class="radio_group">
+                                        <label><input type="radio" name="volunteer_type" value="1" required> 🎓 교육 지원</label>
+                                        <label><input type="radio" name="volunteer_type" value="2"> 🌱 환경 보호</label>
+                                        <label><input type="radio" name="volunteer_type" value="3"> 🤝 복지 활동</label>
+                                        <label><input type="radio" name="volunteer_type" value="4"> 🚨 재해 구호</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col w25"><span>참여 가능 시간</span></div>
+                                <div class="col w75">
+                                    <div class="checkbox_group">
+                                        <label><input type="checkbox" name="schedule" value="weekday"> 평일</label>
+                                        <label><input type="checkbox" name="schedule" value="weekend"> 주말</label>
+                                        <label><input type="checkbox" name="schedule" value="evening"> 저녁시간</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col w25"><span>신청 동기</span></div>
+                                <div class="col w75">
+                                    <textarea class="frm_input" rows="4" placeholder="자원봉사 신청 동기를 작성해주세요..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="write_div">
+                            <button type="submit" class="btn btn_b02">📝 자원봉사 신청하기</button>
+                            <a href="#" class="btn">📋 목록으로 돌아가기</a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // 현재 페이지 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = document.querySelector('.pg .current');
+            if (currentPage) {
+                currentPage.style.backgroundColor = 'var(--primary-color)';
+                currentPage.style.color = '#fff';
+                currentPage.style.borderColor = 'var(--primary-color)';
+            }
+        });
+        
+        // 테스트 상호작용
+        document.querySelector('#chkall').addEventListener('change', function() {
+            console.log('전체 선택:', this.checked);
+        });
+        
+        // 폼 제출 테스트
+        document.querySelector('form[name="fwrite"]').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('자원봉사 신청이 완료되었습니다! (테스트 모드)');
+        });
+        
+        // 반응형 테스트를 위한 화면 크기 표시
+        function showScreenSize() {
+            const width = window.innerWidth;
+            let deviceType = '';
+            if (width >= 1024) deviceType = 'PC';
+            else if (width >= 768) deviceType = '태블릿';
+            else deviceType = '모바일';
+            
+            document.title = `자원봉사 게시판 - ${deviceType} (${width}px)`;
+        }
+        
+        showScreenSize();
+        window.addEventListener('resize', showScreenSize);
+    </script>
+    
+</body>
+</html>
