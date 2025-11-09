@@ -85,15 +85,15 @@ if(!empty($menu_group)) {
                     <li>
                         <a href="/bbs/content.php?co_id=m1_s1">복지관소개</a>
                         <ul class="sh_lnb_s">
-                            <li><a href="/bbs/content.php?co_id=m1_s1">회사소개</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s2">법인소개</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s3">인사말</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s4">미션 및 비전</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s5">연혁</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s6">조직도</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s7">이용안내</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s8">시설안내</a> </li>
-                            <li><a href="/bbs/content.php?co_id=m1_s9">오시는길</a> </li>
+                            <!-- <li><a href="/bbs/content.php?co_id=m1_s1">회사소개</a> </li> -->
+                            <li><a href="/bbs/content.php?co_id=m1_s1">법인소개</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s2">인사말</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s3">미션 및 비전</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s4">연혁</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s5">조직도</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s6">이용안내</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s7">시설안내</a> </li>
+                            <li><a href="/bbs/content.php?co_id=m1_s8">오시는길</a> </li>
                         </ul>
                     </li>
                     <li>
