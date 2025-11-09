@@ -167,9 +167,9 @@ if (G5_IS_MOBILE) {
 
     </div>
 
-    <div class=" write_div">
-        <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn_b01 btn">취소</a>
-        <input type="submit" value="작성완료" id="btn_submit" class="btn_submit btn" accesskey="s">
+    <div class="write_div form_buttons">
+        <a href="<?php echo get_pretty_url($bo_table); ?>" class="btn btn_cancel">취소</a>
+        <input type="submit" value="작성완료" id="btn_submit" class="btn btn_submit" accesskey="s">
     </div>
     </form>
 </section>

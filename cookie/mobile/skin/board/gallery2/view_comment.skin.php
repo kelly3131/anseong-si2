@@ -7,7 +7,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 var char_min = parseInt(<?php echo $comment_min ?>); // 최소
 var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 </script>
-<button type="button" class="cmt_btn">댓글목록 <span><?php echo number_format($view['wr_comment']) ?></span></button>
+<button type="button" class="cmt_btn">
+    <i class="fa fa-comments"></i> 댓글 <span class="comment_count"><?php echo number_format($view['wr_comment']) ?></span>
+</button>
 <!-- 댓글 시작 { -->
 <section id="bo_vc">
     <h2>댓글목록</h2>
@@ -31,14 +33,19 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
     <article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-top-color:#e0e0e0"<?php } ?>>
         <header style="z-index:<?php echo $cmt_sv; ?>">
             <h2><?php echo get_text($list[$i]['wr_name']); ?>님의 댓글<?php if ($cmt_depth) { ?><span class="sound_only">의 댓글</span><?php } ?></h2>
-            <span class="comment_profile_img"><?php echo get_member_profile_img($list[$i]['mb_id'], 40, 40); ?></span> <?php echo $list[$i]['name'] ?>
-            
-            <?php if ($is_ip_view) { ?>
-            <span class="sound_only">아이피</span>
-            <span>(<?php echo $list[$i]['ip']; ?>)</span>
-            <?php } ?>
-            <span class="sound_only">작성일</span>
-            <span class="bo_vc_hdinfo"><i class="fa fa-clock-o"></i> <time datetime="<?php echo date('Y-m-d\TH:i:s+09:00', strtotime($list[$i]['datetime'])) ?>"><?php echo $list[$i]['datetime'] ?></time></span>
+            <div class="comment_profile_img"><?php echo get_member_profile_img($list[$i]['mb_id'], 40, 40); ?></div>
+            <div class="comment_meta">
+                <span class="comment_name sv_member"><?php echo $list[$i]['name'] ?></span>
+                <?php if ($is_ip_view) { ?>
+                <span class="comment_ip">(<?php echo $list[$i]['ip']; ?>)</span>
+                <?php } ?>
+                <span class="bo_vc_hdinfo">
+                    <i class="fa fa-clock-o"></i> 
+                    <time datetime="<?php echo date('Y-m-d\TH:i:s+09:00', strtotime($list[$i]['datetime'])) ?>">
+                        <?php echo $list[$i]['datetime'] ?>
+                    </time>
+                </span>
+            </div>
             <?php
             include(G5_SNS_PATH.'/view_comment_list.sns.skin.php');
             ?>
@@ -319,23 +326,54 @@ $(function() {
 });
 <?php } ?>
 $(function() {            
-    //댓글열기
+    // 댓글 열기/닫기 개선
     $(".cmt_btn").click(function(){
         $(this).toggleClass("cmt_btn_op");
-        $("#bo_vc").toggle();
+        $("#bo_vc").slideToggle(300);
+        
+        // 아이콘 변경
+        const icon = $(this).find('i');
+        if ($(this).hasClass("cmt_btn_op")) {
+            icon.removeClass('fa-comments').addClass('fa-comments-o');
+        } else {
+            icon.removeClass('fa-comments-o').addClass('fa-comments');
+        }
     });
 
-    // 댓글 옵션창 열기
-    $(".cmt_opt").on("click", function(){
-        $(this).parent("div").children(".bo_vl_act").show();
+    // 댓글 옵션창 열기 개선
+    $(".cmt_opt").on("click", function(e){
+        e.stopPropagation();
+        $('.bo_vl_act').not($(this).parent("div").children(".bo_vl_act")).hide();
+        $(this).parent("div").children(".bo_vl_act").toggle();
     });
 
-    // 댓글 옵션창 닫기
-    $(document).mouseup(function (e){
-        var container = $(".bo_vl_act");
-        if( container.has(e.target).length === 0)
-        container.hide();
+    // 댓글 옵션창 닫기 개선
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.bo_vl_opt').length) {
+            $('.bo_vl_act').hide();
+        }
     });
+    
+    // 댓글 작성 시 실시간 글자수 카운트
+    $('#wr_content').on('input', function() {
+        const content = $(this).val();
+        const length = content.length;
+        const maxLength = $(this).attr('maxlength') || 10000;
+        
+        $('#char_count').text(length);
+        
+        // 글자수가 최대치에 가까우면 색상 변경
+        if (length > maxLength * 0.9) {
+            $('#char_count').css('color', '#dc3545');
+        } else if (length > maxLength * 0.7) {
+            $('#char_count').css('color', '#ffc107');
+        } else {
+            $('#char_count').css('color', '#28a745');
+        }
+    });
+    
+    // 댓글 폼 애니메이션 개선
+    $('.bo_vc_w').hide().slideDown(400);
 });
 </script>
 <?php } ?>

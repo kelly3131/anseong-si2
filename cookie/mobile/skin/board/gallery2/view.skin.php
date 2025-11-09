@@ -190,19 +190,17 @@ if($v_img_count) {
 
   
     <div id="bo_v_top">
-        <ul class="bo_v_left">
-            <?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>" class="btn_b01 btn">수정</a></li><?php } ?>
-            <?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" class="btn_b01 btn" onclick="del(this.href); return false;"> 삭제</a></li><?php } ?>
-            <?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" class="btn_b01 btn" onclick="board_move(this.href); return false;"> 복사</a></li><?php } ?>
-            <?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" class="btn_b01 btn" onclick="board_move(this.href); return false;">이동</a></li><?php } ?>
-            <?php if ($search_href) { ?><li><a href="<?php echo $search_href ?>" class="btn_b01 btn">검색</a></li><?php } ?>
-
-        </ul>
+        <div class="bo_v_left">
+            <?php if ($update_href) { ?><a href="<?php echo $update_href ?>" class="btn btn_b01"><i class="fa fa-edit"></i> 수정</a><?php } ?>
+            <?php if ($delete_href) { ?><a href="<?php echo $delete_href ?>" class="btn btn_b01" onclick="del(this.href); return false;"><i class="fa fa-trash"></i> 삭제</a><?php } ?>
+            <?php if ($copy_href) { ?><a href="<?php echo $copy_href ?>" class="btn btn_b01" onclick="board_move(this.href); return false;"><i class="fa fa-copy"></i> 복사</a><?php } ?>
+            <?php if ($move_href) { ?><a href="<?php echo $move_href ?>" class="btn btn_b01" onclick="board_move(this.href); return false;"><i class="fa fa-arrows"></i> 이동</a><?php } ?>
+            <?php if ($search_href) { ?><a href="<?php echo $search_href ?>" class="btn btn_b01"><i class="fa fa-search"></i> 검색</a><?php } ?>
+        </div>
         <div class="bo_v_right"> 
-            <a href="<?php echo $list_href ?>" class="btn_b01 btn">목록</a>
-            <?php if ($reply_href) { ?><a href="<?php echo $reply_href ?>" class="btn_b01 btn">답변</a><?php } ?>
-            <?php if ($write_href) { ?><a href="<?php echo $write_href ?>" class="btn_b02 btn">글쓰기</a><?php } ?>
-
+            <a href="<?php echo $list_href ?>" class="btn btn_b01"><i class="fa fa-list"></i> 목록</a>
+            <?php if ($reply_href) { ?><a href="<?php echo $reply_href ?>" class="btn btn_b01"><i class="fa fa-reply"></i> 답변</a><?php } ?>
+            <?php if ($write_href) { ?><a href="<?php echo $write_href ?>" class="btn btn_b02"><i class="fa fa-pencil"></i> 글쓰기</a><?php } ?>
         </div>
     </div>
 

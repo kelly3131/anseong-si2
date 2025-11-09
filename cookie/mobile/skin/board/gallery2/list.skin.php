@@ -173,13 +173,14 @@ function get_attached_file_name($bo_table, $wr_id)
         <?php for ($i=0; $i<count($list); $i++) {
         ?>
         <li class="gall_li <?php if ($wr_id == $list[$i]['wr_id']) { ?>gall_now<?php } ?>">
+            <!-- 왼쪽 이미지 영역 -->
             <a href="<?php echo $list[$i]['href'] ?>" class="gall_img">
             <?php
             if ($list[$i]['is_notice']) { // 공지사항 ?>
-                <strong style="width:<?php echo $board['bo_mobile_gallery_width'] ?>px;height:<?php echo $board['bo_mobile_gallery_height'] ?>px">공지</strong>
+                <strong>공지</strong>
             <?php
             } else {
-                $thumb = get_list_thumbnail($board['bo_table'], $list[$i]['wr_id'], $board['bo_mobile_gallery_width'], $board['bo_mobile_gallery_height']);
+                $thumb = get_list_thumbnail($board['bo_table'], $list[$i]['wr_id'], 300, 200);
 
                 if (empty($thumb['src'])) {
                     // 1. 첨부파일 원본명을 가져옴
@@ -190,53 +191,77 @@ function get_attached_file_name($bo_table, $wr_id)
                     
                     if ($custom_src) {
                         $thumb['src'] = $custom_src;
-                        $thumb['alt'] = $original_file; // alt 값은 필요에 따라 조정
+                        $thumb['alt'] = $original_file;
                     }
                 }
                 if($thumb['src']) {
-                    $img_content = '<img src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" width="'.$board['bo_mobile_gallery_width'].'" height="'.$board['bo_mobile_gallery_height'].'">';
+                    $img_content = '<img src="'.$thumb['src'].'" alt="'.$thumb['alt'].'">';
                 } else {
-                    $img_content = '<img src="'.G5_THEME_IMG_URL.'/noimage.png">';
+                    $img_content = '<img src="'.G5_THEME_IMG_URL.'/noimage.png" alt="이미지 없음">';
                 }
 
                 echo $img_content;
             }
             ?>
             </a>
+            
+            <!-- 오른쪽 콘텐츠 영역 -->
             <div class="gall_txt">
+                <!-- 카테고리 -->
+                <?php if ($is_category && $list[$i]['ca_name']) { ?>
                 <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
-                <?php if ($is_checkbox) { // 게시글별 체크박스 ?>
+                <?php } ?>
+                
+                <!-- 체크박스 -->
+                <?php if ($is_checkbox) { ?>
                 <span class="sel bo_chk li_chk">
                     <label for="chk_wr_id_<?php echo $i ?>"><span class="chk_img"></span> <span class="sound_only"><?php echo $list[$i]['subject'] ?></span></label>
                     <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
                 </span>
                 <?php } ?>
 
-                <?php
-                // echo $list[$i]['icon_reply']; 갤러리는 reply 를 사용 안 할 것 같습니다. - 지운아빠 2013-03-04
-                if ($is_category && $list[$i]['ca_name']) {
-                ?>
+                <!-- 제목 -->
+                <h3 class="gall_li_tit">
+                    <a href="<?php echo $list[$i]['href'] ?>">
+                        <?php if (isset($list[$i]['icon_secret'])) echo $list[$i]['icon_secret']; ?>
+                        <?php echo $list[$i]['subject'] ?>
+                        <?php if ($list[$i]['comment_cnt']) { ?><span class="comment_cnt">[<?php echo $list[$i]['comment_cnt']; ?>]</span><?php } ?>
+                    </a>
+                </h3>
+                
+                <!-- 게시글 내용 미리보기 -->
+                <?php 
+                $content_preview = strip_tags($list[$i]['wr_content']);
+                $content_preview = mb_substr($content_preview, 0, 100, 'utf-8');
+                if ($content_preview) { ?>
+                <div class="gall_content_preview">
+                    <?php echo $content_preview; ?>...
+                </div>
                 <?php } ?>
-                <a href="<?php echo $list[$i]['href'] ?>" class="gall_li_tit">
-                    <?php if (isset($list[$i]['icon_secret'])) echo $list[$i]['icon_secret']; ?>
-
-                    <?php echo $list[$i]['subject'] ?>
-                    <?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only">댓글</span><?php echo $list[$i]['comment_cnt']; ?><span class="sound_only">개</span><?php } ?>
-                </a>
-                <?php
-                if (isset($list[$i]['icon_new'])) echo $list[$i]['icon_new'];
-                if (isset($list[$i]['icon_hot'])) echo $list[$i]['icon_hot'];
-                if (isset($list[$i]['icon_file'])) echo $list[$i]['icon_file'];
-                if (isset($list[$i]['icon_link'])) echo $list[$i]['icon_link'];
-                if (isset($list[$i]['icon_secret'])) echo $list[$i]['icon_secret'];
-                ?>
-            </div>
-            <div class="gall_info">
-                <span class="sound_only">작성자 </span><?php echo $list[$i]['name'] ?>
-                <span class="sound_only">조회 </span><strong><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $list[$i]['wr_hit'] ?></strong>
-                <?php if ($is_good) { ?><span class="sound_only">추천</span><strong><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?php echo $list[$i]['wr_good'] ?></strong><?php } ?>
-                <?php if ($is_nogood) { ?><span class="sound_only">비추천</span><strong><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <?php echo $list[$i]['wr_nogood'] ?></strong><?php } ?>
-                <span class="sound_only">작성일 </span><span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$i]['datetime2'] ?></span>
+                
+                <!-- 아이콘들 -->
+                <div class="gall_icons">
+                    <?php
+                    if (isset($list[$i]['icon_new'])) echo '<span class="new_icon">N</span>';
+                    if (isset($list[$i]['icon_hot'])) echo '<span class="hot_icon">H</span>';
+                    if (isset($list[$i]['icon_file'])) echo '<i class="fa fa-download"></i>';
+                    if (isset($list[$i]['icon_link'])) echo '<i class="fa fa-link"></i>';
+                    ?>
+                </div>
+                
+                <!-- 게시글 정보 -->
+                <div class="gall_info">
+                    <div class="user_info">
+                        <span class="sv_member"><?php echo $list[$i]['name'] ?></span>
+                    </div>
+                    <div class="meta_info">
+                        <span class="date"><i class="fa fa-clock-o"></i> <?php echo $list[$i]['datetime2'] ?></span>
+                        <span class="hit"><i class="fa fa-eye"></i> <?php echo number_format($list[$i]['wr_hit']) ?></span>
+                        <?php if ($is_good && $list[$i]['wr_good']) { ?>
+                        <span class="good"><i class="fa fa-thumbs-o-up"></i> <?php echo number_format($list[$i]['wr_good']) ?></span>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
         </li>
         <?php } ?>
@@ -245,22 +270,22 @@ function get_attached_file_name($bo_table, $wr_id)
 
     <?php if ($list_href || $is_checkbox || $write_href) { ?>
     <div class="bo_fx">
-        <ul class="btn_bo_adm">
+        <div class="btn_bo_adm">
             <?php if ($list_href) { ?>
-            <li><a href="<?php echo $list_href ?>" class="btn_b01 btn"> 목록</a></li>
+            <a href="<?php echo $list_href ?>" class="btn btn_b01"><i class="fa fa-list"></i> 목록</a>
             <?php } ?>
             <?php if ($is_checkbox) { ?>
-            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_b01">선택삭제</button></li>
-            <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value" class="btn btn_b01">선택복사</button></li>
-            <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value" class="btn btn_b01">선택이동</button></li>
+            <button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_b01"><i class="fa fa-trash"></i> 선택삭제</button>
+            <button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value" class="btn btn_b01"><i class="fa fa-copy"></i> 선택복사</button>
+            <button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value" class="btn btn_b01"><i class="fa fa-arrows"></i> 선택이동</button>
             <?php } ?>
-        </ul>
-        <?php if ($rss_href || $write_href) { ?>
-        <ul class="btn_wr">
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn btn_b01">RSS</a></li><?php } ?>
-            <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin" target="_blank"><i class="fa fa-cog"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn btn_b02">글쓰기</a></li><?php } ?>
-        </ul>
+        </div>
+        <?php if ($rss_href || $write_href || $admin_href) { ?>
+        <div class="btn_wr">
+            <?php if ($rss_href) { ?><a href="<?php echo $rss_href ?>" class="btn btn_b01"><i class="fa fa-rss"></i> RSS</a><?php } ?>
+            <?php if ($admin_href) { ?><a href="<?php echo $admin_href ?>" class="btn btn_admin" target="_blank"><i class="fa fa-cog"></i> 관리</a><?php } ?>
+            <?php if ($write_href) { ?><a href="<?php echo $write_href ?>" class="btn btn_b02"><i class="fa fa-pencil"></i> 글쓰기</a><?php } ?>
+        </div>
         <?php } ?>
     </div>
     <?php } ?>
@@ -275,8 +300,10 @@ function get_attached_file_name($bo_table, $wr_id)
 </noscript>
 <?php } ?>
 
-<!-- 페이지 -->
-<?php echo $write_pages; ?>
+<!-- 페이지네이션 -->
+<div class="pagination_wrap">
+    <?php echo $write_pages; ?>
+</div>
 
 
 <?php if ($is_checkbox) { ?>
@@ -343,3 +370,206 @@ function select_copy(sw) {
 </script>
 <?php } ?>
 <!-- 게시판 목록 끝 -->
+
+<script>
+// 갤러리 향상된 기능
+$(document).ready(function() {
+    // 이미지 로딩 에러 처리
+    $('#gall_ul img').on('error', function() {
+        $(this).attr('src', '<?php echo G5_THEME_IMG_URL ?>/noimage.png');
+        $(this).addClass('no-image');
+    });
+    
+    // 이미지 레이지 로딩
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.remove('loading');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        $('#gall_ul img').each(function() {
+            imageObserver.observe(this);
+        });
+    }
+    
+    // 부드러운 스크롤 효과
+    $('a[href*="#"]').on('click', function(e) {
+        const target = $(this.getAttribute('href'));
+        if (target.length) {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: target.offset().top - 100
+            }, 500);
+        }
+    });
+    
+    // 검색 입력 개선
+    $('#stx').on('focus', function() {
+        $(this).parent().addClass('focused');
+    }).on('blur', function() {
+        $(this).parent().removeClass('focused');
+    });
+    
+    // 전체선택 개선
+    $('#chkall').on('change', function() {
+        const isChecked = $(this).prop('checked');
+        $('input[name="chk_wr_id[]"]').prop('checked', isChecked);
+        updateSelectedCount();
+    });
+    
+    $('input[name="chk_wr_id[]"]').on('change', function() {
+        updateSelectedCount();
+        updateSelectAllState();
+    });
+    
+    function updateSelectedCount() {
+        const selectedCount = $('input[name="chk_wr_id[]"]:checked').length;
+        const totalCount = $('input[name="chk_wr_id[]"]').length;
+        
+        if (selectedCount > 0) {
+            $('.all_chk label').html(`<span class="chk_img"></span> ${selectedCount}개 선택됨`);
+        } else {
+            $('.all_chk label').html('<span class="chk_img"></span> 전체선택');
+        }
+    }
+    
+    function updateSelectAllState() {
+        const totalCheckboxes = $('input[name="chk_wr_id[]"]').length;
+        const checkedCheckboxes = $('input[name="chk_wr_id[]"]:checked').length;
+        
+        $('#chkall').prop('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
+        $('#chkall').prop('checked', checkedCheckboxes === totalCheckboxes && totalCheckboxes > 0);
+    }
+    
+    // 키보드 네비게이션
+    $(document).on('keydown', function(e) {
+        if (e.ctrlKey || e.metaKey) {
+            switch(e.keyCode) {
+                case 65: // Ctrl+A
+                    if ($('#chkall').length) {
+                        e.preventDefault();
+                        $('#chkall').prop('checked', true).trigger('change');
+                    }
+                    break;
+                case 70: // Ctrl+F
+                    e.preventDefault();
+                    $('#stx').focus();
+                    break;
+            }
+        }
+    });
+    
+    // 반응형 테이블 개선
+    function handleResize() {
+        const width = $(window).width();
+        if (width <= 639) {
+            $('body').addClass('mobile-view');
+        } else {
+            $('body').removeClass('mobile-view');
+        }
+    }
+    
+    $(window).on('resize', handleResize);
+    handleResize();
+});
+
+// 선택 삭제 확인 개선
+function confirmDelete() {
+    const selectedCount = $('input[name="chk_wr_id[]"]:checked').length;
+    if (selectedCount === 0) {
+        alert('삭제할 게시글을 선택해주세요.');
+        return false;
+    }
+    
+    return confirm(`선택한 ${selectedCount}개의 게시글을 정말 삭제하시겠습니까?\n\n※ 한번 삭제한 자료는 복구할 수 없습니다.`);
+}
+
+// 토스트 메시지 함수
+function showToast(message, type = 'info') {
+    const toast = $(`
+        <div class="toast toast-${type}">
+            <div class="toast-content">
+                <i class="fa fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}"></i>
+                <span>${message}</span>
+            </div>
+        </div>
+    `);
+    
+    $('body').append(toast);
+    
+    setTimeout(() => {
+        toast.addClass('show');
+    }, 100);
+    
+    setTimeout(() => {
+        toast.removeClass('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+</script>
+
+<!-- 토스트 메시지 CSS -->
+<style>
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 9999;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-success {
+    border-left: 4px solid #28a745;
+}
+
+.toast-error {
+    border-left: 4px solid #dc3545;
+}
+
+.toast-info {
+    border-left: 4px solid #17a2b8;
+}
+
+.toast i {
+    font-size: 16px;
+}
+
+.toast-success i { color: #28a745; }
+.toast-error i { color: #dc3545; }
+.toast-info i { color: #17a2b8; }
+
+@media (max-width: 639px) {
+    .toast {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
+    }
+}
+</style>
