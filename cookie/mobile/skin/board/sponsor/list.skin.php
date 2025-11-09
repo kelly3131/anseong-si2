@@ -11,37 +11,45 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 ?>
 
 <?php // 게시판 관리의 상단 내용
-if (G5_IS_MOBILE) {
+if ($board['bo_content_head'] || $board['bo_mobile_content_head']) {
     echo '<div class="bo_top_img">';
-    // 모바일의 경우 설정을 따르지 않는다.
-    echo html_purifier(stripslashes($board['bo_mobile_content_head']));
-     echo '</div>';
-
-} 
+    // 반응형: PC와 모바일 모두 지원
+    if (G5_IS_MOBILE && $board['bo_mobile_content_head']) {
+        echo html_purifier(stripslashes($board['bo_mobile_content_head']));
+    } else if ($board['bo_content_head']) {
+        echo html_purifier(stripslashes($board['bo_content_head']));
+    }
+    echo '</div>';
+}
 ?>
 
-<div class="container clearfix">
-<div class="inner">
-<? include_once(G5_PATH.'/skin/nav/mysubmenu.php');?>
-<div id="bo_list_total" class="pc_view">
-    <span>전체 <?php echo number_format($total_count) ?>건</span>
-    <?php echo $page ?> 페이지
-</div>
-
-<div id="nav">
-    <div class="nav_wr"><a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; <?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']); ?></div>
-</div>
-
-<?php if ($is_category) { ?>
-<nav id="bo_cate">
-    <h2><?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']) ?> 카테고리</h2>
-    <ul id="bo_cate_ul">
-        <?php echo $category_option ?>
-    </ul>
+<nav id="nav">
+    <div class="nav_wr">
+        <a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; 
+        <?php echo $board['bo_subject']; ?>
+    </div>
 </nav>
-<?php } ?>
 
-<div id="bo_list">
+<div class="inner container">
+  <article id="bo_list" class="bo_list_<?php echo $bo_table; ?>">
+    <header>
+        <h1><?php echo $board['bo_subject']; ?></h1>
+    </header>
+
+    <div id="bo_list_con">
+        <?php if ($is_category) { ?>
+        <nav id="bo_cate">
+            <h2><?php echo $board['bo_subject'] ?> 카테고리</h2>
+            <ul id="bo_cate_ul">
+                <?php echo $category_option ?>
+            </ul>
+        </nav>
+        <?php } ?>
+
+        <div id="bo_list_total">
+            <span>전체 <?php echo number_format($total_count) ?>건</span>
+            <?php echo $page ?> 페이지
+        </div>
     
     <fieldset id="bo_sch">
         <legend>게시물 검색</legend>
@@ -159,19 +167,17 @@ if (G5_IS_MOBILE) {
 
     
 
-    <!-- 게시판 목록 시작 -->
-</div>
-</div>
-</div>
+    </div>
+
+    <!-- 페이지 -->
+    <?php echo $write_pages; ?>
+</article>
+
 <?php if($is_checkbox) { ?>
 <noscript>
 <p>자바스크립트를 사용하지 않는 경우<br>별도의 확인 절차 없이 바로 선택삭제 처리하므로 주의하시기 바랍니다.</p>
 </noscript>
 <?php } ?>
-
-<!-- 페이지 -->
-<?php echo $write_pages; ?>
-
 
 <?php if ($is_checkbox) { ?>
 <script>
@@ -236,4 +242,5 @@ function select_copy(sw) {
 }
 </script>
 <?php } ?>
+</div>
 <!-- 게시판 목록 끝 -->

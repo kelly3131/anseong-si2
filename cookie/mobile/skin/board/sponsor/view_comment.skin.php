@@ -9,8 +9,11 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 </script>
 <button type="button" class="cmt_btn">댓글목록 <span><?php echo number_format($view['wr_comment']) ?></span></button>
 <!-- 댓글 시작 { -->
-<section id="bo_vc">
-    <h2>댓글목록</h2>
+<section id="bo_vc" class="bo_vc_<?php echo $bo_table; ?>">
+    <header>
+        <h2>댓글목록</h2>
+    </header>
+    <div id="bo_vc_con">
     <?php
     $cmt_amt = count($list);
     for ($i=0; $i<$cmt_amt; $i++) {
@@ -80,7 +83,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
     </article>
     <?php } ?>
     <?php if ($i == 0) { //댓글이 없다면 ?><p id="bo_vc_empty">등록된 댓글이 없습니다.</p><?php } ?>
-
+    </div>
 </section>
 <!-- } 댓글 끝 -->
 
@@ -90,7 +93,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 ?>
 <!-- 댓글 쓰기 시작 { -->
 <aside id="bo_vc_w" class="bo_vc_w">
-    <h2>댓글쓰기</h2>
+    <header>
+        <h2>댓글쓰기</h2>
+    </header>
+    <div id="bo_vc_w_con">
     <form name="fviewcomment" id="fviewcomment" action="<?php echo $comment_action_url; ?>" onsubmit="return fviewcomment_submit(this);" method="post" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $w ?>" id="w">
     <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
@@ -147,6 +153,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
         </div>
     </div>
     </form>
+    </div>
 </aside>
 
 <script>

@@ -6,32 +6,44 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 ?>
 
 <?php // 게시판 관리의 상단 내용
-if (G5_IS_MOBILE) {
+if ($board['bo_content_head'] || $board['bo_mobile_content_head']) {
   echo '<div class="bo_top_img">';
-  // 모바일의 경우 설정을 따르지 않는다.
-  echo html_purifier(stripslashes($board['bo_mobile_content_head']));
+  // 반응형: PC와 모바일 모두 지원
+  if (G5_IS_MOBILE && $board['bo_mobile_content_head']) {
+    echo html_purifier(stripslashes($board['bo_mobile_content_head']));
+  } else if ($board['bo_content_head']) {
+    echo html_purifier(stripslashes($board['bo_content_head']));
+  }
   echo '</div>';
 }
 ?>
 
-<div id="nav">
-  <div class="nav_wr"><a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; <?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']); ?> </div>
-</div>
+<nav id="nav">
+  <div class="nav_wr">
+    <a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; 
+    <?php echo $board['bo_subject']; ?>
+  </div>
+</nav>
 
-<section id="bo_w">
+<div class="inner container">
+  <article id="bo_w" class="bo_w_<?php echo $bo_table; ?>">
+  <header>
+    <h1><?php echo $board['bo_subject']; ?></h1>
+  </header>
 
-  <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);"
-    method="post" enctype="multipart/form-data" autocomplete="off">
-    <input type="hidden" name="w" value="<?php echo $w ?>">
-    <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
-    <input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
-    <input type="hidden" name="sca" value="<?php echo $sca ?>">
-    <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
-    <input type="hidden" name="stx" value="<?php echo $stx ?>">
-    <input type="hidden" name="spt" value="<?php echo $spt ?>">
-    <input type="hidden" name="sst" value="<?php echo $sst ?>">
-    <input type="hidden" name="sod" value="<?php echo $sod ?>">
-    <input type="hidden" name="page" value="<?php echo $page ?>">
+  <div id="bo_w_con">
+    <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);"
+      method="post" enctype="multipart/form-data" autocomplete="off">
+      <input type="hidden" name="w" value="<?php echo $w ?>">
+      <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+      <input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
+      <input type="hidden" name="sca" value="<?php echo $sca ?>">
+      <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
+      <input type="hidden" name="stx" value="<?php echo $stx ?>">
+      <input type="hidden" name="spt" value="<?php echo $spt ?>">
+      <input type="hidden" name="sst" value="<?php echo $sst ?>">
+      <input type="hidden" name="sod" value="<?php echo $sod ?>">
+      <input type="hidden" name="page" value="<?php echo $page ?>">
     <?php
     $option = '';
     $option_hidden = '';
@@ -416,8 +428,9 @@ if (G5_IS_MOBILE) {
         <input type="submit" value="후원신청완료" id="btn_submit" class="btn_submit btn" accesskey="s">
       </div>
       </div>
-  </form>
-</section>
+    </form>
+  </div>
+</article>
 
 
 
@@ -627,3 +640,4 @@ if (G5_IS_MOBILE) {
     return true;
   }
 </script>
+</div>

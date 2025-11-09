@@ -9,39 +9,35 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
 <?php // 게시판 관리의 상단 내용
-if (G5_IS_MOBILE) {
+if ($board['bo_content_head'] || $board['bo_mobile_content_head']) {
     echo '<div class="bo_top_img">';
-    // 모바일의 경우 설정을 따르지 않는다.
-    echo html_purifier(stripslashes($board['bo_mobile_content_head']));
-     echo '</div>';
-
+    // 반응형: PC와 모바일 모두 지원
+    if (G5_IS_MOBILE && $board['bo_mobile_content_head']) {
+        echo html_purifier(stripslashes($board['bo_mobile_content_head']));
+    } else if ($board['bo_content_head']) {
+        echo html_purifier(stripslashes($board['bo_content_head']));
+    }
+    echo '</div>';
 }
 ?>
 
-<div id="nav">
-    <div class="nav_wr"><a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; <?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']); ?> </div>
-</div>
+<nav id="nav">
+    <div class="nav_wr">
+        <a href="<?php echo G5_URL ?>"><i class="fa fa-home"></i> HOME</a> &gt; 
+        <?php echo $board['bo_subject']; ?>
+    </div>
+</nav>
 
 <div class="inner container">
-  <article id="bo_v">
+  <article id="bo_v" class="bo_v_<?php echo $bo_table; ?>">
     <header>
-        <h2 id="bo_v_title" >
+        <h1><?php echo $board['bo_subject']; ?></h1>
+        <h2 id="bo_v_title">
             <?php if ($category_name) { ?>
-            <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
+            <span class="bo_v_cate"><?php echo $view['ca_name']; ?></span> 
             <?php } ?>
-            <span class="bo_v_tit ">
-            
-            <div class="sub-title" style="border-bottom: 1px solid #222">
-		        <h3>후원 신청</h3>
-            </div>
-            <!--
-            <?php
-            echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력
-            ?>
-            -->
-            </span>
+            <span class="bo_v_tit">후원 신청</span>
         </h2>
-
     </header>
 
      <section id="bo_v_info">
@@ -57,7 +53,7 @@ if (G5_IS_MOBILE) {
 
     <section id="bo_v_atc">
       <h2 id="bo_v_atc_title">본문</h2>
-      <div class="form_01">
+      <div id="bo_v_con">
         <h2 class="sound_only"><?php echo $g5['title'] ?></h2>
 
         <?php if ($is_category) { ?>
@@ -180,9 +176,12 @@ if (G5_IS_MOBILE) {
               </div>
             </div>
           <?php } ?>
-          <div class="col w25"><span>메모</span></div>
-          <label for="bo_v_con" class="sound_only">메모<strong>필수</strong></label>
-          <div id="bo_v_con"><?php echo get_view_thumbnail($view['content']); ?></div>
+          <div class="row">
+            <div class="col w25"><span>메모</span></div>
+            <div class="col w75">
+              <?php echo get_view_thumbnail($view['content']); ?>
+            </div>
+          </div>
 
           <div class="bo_w_tit write_div" style="display:none">
             <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
