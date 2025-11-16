@@ -236,4 +236,79 @@
     .mission-grid {
         grid-template-columns: 1fr;
     }
+    
+    .intro-section p {
+        font-size: 0.8rem;
+    }
+    
+    .business-item {
+        padding: 1rem;
+    }
+}
+
+/* 태블릿 반응형 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .mission-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+    
+    .foundation-info h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* PC 반응형 */
+@media (min-width: 1025px) {
+    .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    .title-bar {
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .foundation-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .foundation-info h2 {
+        font-size: 2rem;
+    }
+    
+    .foundation-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .mission-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .business-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .president-section {
+        gap: 2rem;
+    }
+    
+    .president-photo {
+        width: 150px;
+        height: 180px;
+    }
+    
+    .intro-section p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .president-message p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
 }

@@ -62,20 +62,21 @@
 }
 
 /* =========================== 사업안내 공통 스타일 */
-/* 메인 탭 */
+/* 메인 탭 - 모든 컨텐츠 페이지 공통 사용 */
 .main-tabs-wrapper {
     background-color: #fff;
-    border-bottom: 2px solid #f3f4f6;
-    position: sticky;
-    top: 0;
-    z-index: 20;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .main-tabs {
-    max-width: 100%;
     display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 0 16px;
+    min-width: max-content;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .main-tabs::-webkit-scrollbar {
@@ -83,37 +84,90 @@
 }
 
 .main-tab {
-    flex: 1;
-    min-width: 120px;
-    padding: 1.25rem 1rem;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
+    display: block;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
     color: #6b7280;
     text-decoration: none;
-    display: block;
-    transition: all 0.2s;
-    position: relative;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
     white-space: nowrap;
+    position: relative;
 }
 
 .main-tab:hover {
-    color: #1f2937;
-    background-color: #f9fafb;
+    color: #F7B825;
+    background-color: #f8fafc;
 }
 
 .main-tab.active {
-    color: #f59e0b;
+    color: #F7B825;
+    border-bottom-color: #F7B825;
 }
 
-.main-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #fbbf24;
+/* 모바일용 탭 메뉴 반응형 */
+@media (max-width: 768px) {    .main-tabs-wrapper {
+        margin-bottom: 0;
+        padding: 0 8px;
+    }
+    
+    .main-tabs {
+        gap: 4px;
+        padding: 0 8px;
+    }
+    
+    .main-tab {
+        padding: 10px 12px;
+        font-size: 13px;
+        min-width: 80px;
+        text-align: center;
+    }
+}
+
+/* 태블릿용 탭 메뉴 반응형 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-tabs {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 0 20px;
+    }
+    
+    .main-tab {
+        padding: 12px 18px;
+        font-size: 15px;
+    }
+}
+
+/* PC용 탭 메뉴 반응형 */
+@media (min-width: 1025px) {
+    .main-tabs-wrapper {
+        overflow-x: visible;
+    }
+    
+    .main-tabs {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 0 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .main-tab {
+        padding: 14px 20px;
+        font-size: 16px;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .main-tab:hover {
+        background-color: #f8fafc;
+    }
+    
+    .main-tab.active {
+        background-color: #eff6ff;
+    }
 }
 
 /* 서브 탭 */
@@ -177,10 +231,10 @@
 }
 
 .sub-tab.active {
-    background-color: #fbbf24;
+    background-color: #F7B825;
     color: #fff;
-    border-color: #fbbf24;
-    box-shadow: 0 1px 3px rgba(251, 191, 36, 0.3);
+    border-color: #F7B825;
+    box-shadow: 0 1px 3px rgba(247, 184, 37, 0.3);
 }
 
 .chevron {
@@ -209,7 +263,7 @@
 .title-accent {
     width: 6px;
     height: 2rem;
-    background-color: #fbbf24;
+    background-color: #F7B825;
     border-radius: 9999px;
 }
 
@@ -336,7 +390,7 @@
     color: #374151;
     margin: 1.5rem 0 0.75rem 0;
     padding-left: 0.5rem;
-    border-left: 3px solid #fbbf24;
+    border-left: 3px solid #F7B825;
 }
 
 .business-detail ol {
@@ -355,7 +409,7 @@
 }
 
 .step {
-    background-color: #fbbf24;
+    background-color: #F7B825;
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
@@ -370,8 +424,8 @@
 }
 
 .documents {
-    background-color: #fffbeb;
-    border: 1px solid #fde68a;
+    background-color: #fef9e7;
+    border: 1px solid #F7B825;
     border-radius: 0.5rem;
     padding: 1rem;
     margin-top: 1rem;

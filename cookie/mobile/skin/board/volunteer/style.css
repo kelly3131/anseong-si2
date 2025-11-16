@@ -2433,7 +2433,7 @@ a:hover {
 }
 
 .required {
-    border-left: 3px solid var(--primary-color) !important;
+    /* border-left: 3px solid var(--primary-color) !important; */
 }
 
 /* 전화번호 입력 */
