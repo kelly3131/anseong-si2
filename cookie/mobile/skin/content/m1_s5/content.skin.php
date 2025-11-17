@@ -41,237 +41,105 @@ add_stylesheet('<link rel="stylesheet" href="'.$content_skin_url.'/style.css">',
                 <div class="organ s_style">
                     <div class="organ_tree_wrap">	
                         <div class="organ_tree_img">
-                            <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m1/organ.jpg" usemap="#img01Map" id="img01" style="width: 100%;">
+                            <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m1/organ.jpg" usemap="#img01Map" id="img01" class="org-chart-img">
+                            <div class="imagemap-overlay" id="imagemap-overlay"></div>
                             <map name="img01Map" id="img01Map">
-                                <area shape="rect" coords="374,592,520,725" onclick="show_history(1)" class="organ_maps">
-                                <area shape="rect" coords="336,377,553,454" onclick="show_history(2)" class="organ_maps">
-                                <area shape="rect" coords="54,184,279,273" onclick="show_history(3)" class="organ_maps">
-                                <area shape="rect" coords="332,186,569,267" onclick="show_history(4)" class="organ_maps">
-                                <area shape="rect" coords="23,55,157,99" onclick="show_history(5)" class="organ_maps">
-                                <area shape="rect" coords="166,53,295,100" onclick="show_history(6)" class="organ_maps">
-                                <area shape="rect" coords="308,54,438,101" onclick="show_history(7)" class="organ_maps">
-                                <area shape="rect" coords="446,55,578,101" onclick="show_history(8)" class="organ_maps">
-                                <area shape="rect" coords="586,54,717,101" onclick="show_history(9)" class="organ_maps">
-                                <area shape="rect" coords="726,56,858,102" onclick="show_history(10)" class="organ_maps">
+                                <!-- 관장 (하단 원형) -->
+                                <area shape="circle" coords="440,658,65" onclick="show_history(1)" class="organ_maps" title="관장">
+                                <!-- 부장 (중앙 사각형) -->
+                                <area shape="rect" coords="343,387,537,436" onclick="show_history(2)" class="organ_maps" title="부장">
+                                <!-- 총무과장 (부장 왼쪽 타원형) -->
+                                <area shape="rect" coords="59,194,258,244" onclick="show_history(3)" class="organ_maps" title="총무과장">
+                                <!-- 복지과장 (부장 오른쪽 타원형) -->
+                                <area shape="rect" coords="341,194,541,244" onclick="show_history(4)" class="organ_maps" title="복지과장">
+                                <!-- 운영지원팀 (상단 첫번째) -->
+                                <area shape="rect" coords="24,60,162,100" onclick="show_history(5)" class="organ_maps" title="운영지원팀">
+                                <!-- 기획홍보팀 (상단 두번째) -->
+                                <area shape="rect" coords="177,60,300,100" onclick="show_history(6)" class="organ_maps" title="기획홍보팀">
+                                <!-- 맞춤돌봄팀 (상단 세번째) -->
+                                <area shape="rect" coords="307,60,440,100" onclick="show_history(7)" class="organ_maps" title="맞춤돌봄팀">
+                                <!-- 사회참여팀 (상단 네번째) -->
+                                <area shape="rect" coords="446,60,575,100" onclick="show_history(8)" class="organ_maps" title="사회참여팀">
+                                <!-- 문화건강팀 (상단 다섯번째) -->
+                                <area shape="rect" coords="581,60,715,100" onclick="show_history(9)" class="organ_maps" title="문화건강팀">
+                                <!-- 사례관리팀 (상단 마지막) -->
+                                <area shape="rect" coords="721,60,855,100" onclick="show_history(10)" class="organ_maps" title="사례관리팀">
                             </map>
-                        </div>
+                        </div>  
+                    
                     </div>  
                     
-                    <b class="history_info">※ 내용이 안 보일경우 터치(마우스)로 좌우로 스크롤을 밀면 자세히 보실수 있습니다.</b>
                 </div>
             </div>
 
             <div class="info-section">
                 <h3 class="section-title-with-icon">직원현황</h3>
                 <div class="staff-statistics">
-                    <table class="organ_table1" style="width: 100%; border-collapse: collapse; background: #fff; border: 2px solid #4a90e2;">
-                        <tbody>
-                            <tr>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">구분</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">관장</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">부장</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">과장</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">선임<br>사회복지사</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">사회복지사</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">간호사</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">물리치료사</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">사무원</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">회계원</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">시설관리</th>
-                                <th style="background: #4a90e2; color: #fff; padding: 12px 8px; border: 1px solid #ddd; text-align: center;">노인 상담<br>센터 상담사</th>
-                            </tr>
-                            <tr>
-                                <td>인원(명)</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <th>구분</th>
-                                <th>영양사</th>
-                                <th>조리사</th>
-                                <th>조리원</th>
-                                <th>노인맞춤돌봄<br>전담<br>사회복지사</th>
-                                <th>응급관리요원</th>
-                                <th>노인 일자리<br>담당자</th>
-                                <th>생활<br>지원사</th>
-                                <th>아침밥상<br>전담·<br>조리원</th>
-                                <th>공도<br>나소향<br>나눔밥상<br>영양사</th>
-                                <th>공도<br>나소향<br>나눔밥상<br>조리원</th>
-                                <th>전체</th>
-                            </tr>
-                            <tr>
-                                <td>인원(명)</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>50</td>
-                                <td>3</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>94</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h3 class="section-title-with-icon">조직 현황</h3>
-                <div class="org-details">
-                    
-                    <div class="org-department" id="director">
-                        <h4>관장</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li><strong>역할:</strong> 복지관 전체 운영 총괄</li>
-                                <li><strong>주요업무:</strong> 정책수립, 대외협력, 운영방향 설정</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="org-department" id="deputy">
-                        <h4>부장</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li><strong>역할:</strong> 관장 업무 보좌 및 실무 총괄</li>
-                                <li><strong>주요업무:</strong> 각 팀 업무 조정, 사업계획 수립</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="general-affairs">
-                        <h4>총무과 과장</h4>
-                        <div class="department-info">
-                            <p><strong>담당팀:</strong> 운영지원팀, 기획총무팀</p>
-                            <ul>
-                                <li><strong>운영지원팀:</strong> 시설관리, 안전관리, 환경정비</li>
-                                <li><strong>기획총무팀:</strong> 인사관리, 회계관리, 기획업무</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="welfare">
-                        <h4>복지과 과장</h4>
-                        <div class="department-info">
-                            <p><strong>담당팀:</strong> 맞춤돌봄팀, 사회참여팀, 문화건강팀, 사례관리팀</p>
-                            <ul>
-                                <li><strong>맞춤돌봄팀:</strong> 노인맞춤돌봄서비스, 재가서비스</li>
-                                <li><strong>사회참여팀:</strong> 노인일자리, 사회활동지원</li>
-                                <li><strong>문화건강팀:</strong> 평생교육, 건강증진프로그램</li>
-                                <li><strong>사례관리팀:</strong> 통합사례관리, 상담서비스</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="operation-support">
-                        <h4>운영지원팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>시설 유지 관리</li>
-                                <li>안전 관리</li>
-                                <li>환경 정비</li>
-                                <li>차량 관리</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="planning">
-                        <h4>기획총무팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>인사 관리</li>
-                                <li>회계 관리</li>
-                                <li>기획 업무</li>
-                                <li>예산 편성</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="customized-care">
-                        <h4>맞춤돌봄팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>노인맞춤돌봄서비스</li>
-                                <li>재가서비스</li>
-                                <li>응급안전안심서비스</li>
-                                <li>방문상담</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="social-participation">
-                        <h4>사회참여팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>노인일자리 사업</li>
-                                <li>사회활동지원사업</li>
-                                <li>자원봉사 운영</li>
-                                <li>지역사회 연계</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="culture-health">
-                        <h4>문화건강팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>평생교육 프로그램</li>
-                                <li>건강증진 프로그램</li>
-                                <li>문화여가 프로그램</li>
-                                <li>체육활동 지원</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="case-management">
-                        <h4>사례관리팀</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>통합사례관리</li>
-                                <li>상담서비스</li>
-                                <li>치매예방 프로그램</li>
-                                <li>정신건강 지원</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="management-committee">
-                        <h4>운영위원회</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>복지관 운영 자문</li>
-                                <li>사업계획 심의</li>
-                                <li>예산 심의</li>
-                                <li>정책 자문</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="org-department" id="personnel-committee">
-                        <h4>인사위원회</h4>
-                        <div class="department-info">
-                            <ul>
-                                <li>인사정책 수립</li>
-                                <li>직원 평가</li>
-                                <li>교육계획 수립</li>
-                                <li>복무관리</li>
-                            </ul>
-                        </div>
+                    <div class="table-scroll-wrapper">
+                        <table class="organ_table1">
+                            <tbody>
+                                <tr>
+                                    <th>구분</th>
+                                    <th>관장</th>
+                                    <th>부장</th>
+                                    <th>과장</th>
+                                    <th>선임<br>사회복지사</th>
+                                    <th>사회복지사</th>
+                                    <th>간호사</th>
+                                    <th>물리치료사</th>
+                                    <th>사무원</th>
+                                    <th>회계원</th>
+                                    <th>시설관리</th>
+                                    <th>노인 상담<br>센터 상담사</th>
+                                </tr>
+                                <tr>
+                                    <td>인원(명)</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <th>구분</th>
+                                    <th>영양사</th>
+                                    <th>조리사</th>
+                                    <th>조리원</th>
+                                    <th>노인맞춤돌봄<br>전담<br>사회복지사</th>
+                                    <th>응급관리요원</th>
+                                    <th>노인 일자리<br>담당자</th>
+                                    <th>생활<br>지원사</th>
+                                    <th>아침밥상<br>전담·<br>조리원</th>
+                                    <th>공도<br>나소향<br>나눔밥상<br>영양사</th>
+                                    <th>공도<br>나소향<br>나눔밥상<br>조리원</th>
+                                    <th>전체</th>
+                                </tr>
+                                <tr>
+                                    <td>인원(명)</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>50</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>94</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -289,318 +157,790 @@ add_stylesheet('<link rel="stylesheet" href="'.$content_skin_url.'/style.css">',
 </div>
 
 <script>
-// 각 부서별 상세 정보 데이터
+// 각 부서별 직원 정보 데이터
 const orgData = {
     1: { // 관장
         title: "관장",
         content: `
-            <h4>역할 및 책무</h4>
-            <ul>
-                <li>복지관 전체 운영 총괄</li>
-                <li>정책수립 및 대외협력</li>
-                <li>운영방향 설정</li>
-                <li>지역사회 네트워크 구축</li>
-            </ul>
-            <h4>담당업무</h4>
-            <ul>
-                <li>복지관 운영 기획 및 총괄</li>
-                <li>예산 편성 및 집행 관리</li>
-                <li>대외기관 협력 관계 구축</li>
-                <li>직원 관리 및 조직 운영</li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>관장</td>
+                                <td>가섭스님</td>
+                                <td>031-674-0791</td>
+                                <td>복지관 운영, 사업 총괄</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     2: { // 부장
         title: "부장",
         content: `
-            <h4>역할 및 책무</h4>
-            <ul>
-                <li>관장 업무 보좌 및 실무 총괄</li>
-                <li>각 팀 업무 조정 및 관리</li>
-                <li>사업계획 수립 및 실행</li>
-                <li>품질관리 및 서비스 향상</li>
-            </ul>
-            <h4>담당업무</h4>
-            <ul>
-                <li>각 과 및 팀 업무 조정</li>
-                <li>사업계획 수립 및 평가</li>
-                <li>서비스 품질 관리</li>
-                <li>직원 교육 및 개발</li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>부장</td>
+                                <td>권순호</td>
+                                <td>031-674-0795</td>
+                                <td>복지사업 실무총괄</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     3: { // 총무과
-        title: "총무과",
+        title: "총무과 과장",
         content: `
-            <h4>담당팀</h4>
-            <p><strong>운영지원팀, 기획총무팀</strong></p>
-            
-            <h4>주요업무</h4>
-            <ul>
-                <li><strong>운영지원팀</strong>
-                    <ul>
-                        <li>시설관리 및 유지보수</li>
-                        <li>안전관리 및 환경정비</li>
-                        <li>차량관리 및 운행</li>
-                        <li>물품구매 및 관리</li>
-                    </ul>
-                </li>
-                <li><strong>기획총무팀</strong>
-                    <ul>
-                        <li>인사관리 및 급여</li>
-                        <li>회계관리 및 예산</li>
-                        <li>기획업무 및 보고</li>
-                        <li>문서관리 및 보안</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>과장/사회복지사</td>
+                                <td>김은주</td>
+                                <td>070-5143-0086</td>
+                                <td>총무과 운영 총괄</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     4: { // 복지과
-        title: "복지과",
+        title: "복지과 과장",
         content: `
-            <h4>담당팀</h4>
-            <p><strong>맞춤돌봄팀, 사회참여팀, 문화건강팀, 사례관리팀</strong></p>
-            
-            <h4>주요업무</h4>
-            <ul>
-                <li><strong>맞춤돌봄팀</strong>
-                    <ul>
-                        <li>노인맞춤돌봄서비스</li>
-                        <li>재가서비스 제공</li>
-                        <li>응급안전안심서비스</li>
-                        <li>방문상담 및 지원</li>
-                    </ul>
-                </li>
-                <li><strong>사회참여팀</strong>
-                    <ul>
-                        <li>노인일자리 사업</li>
-                        <li>사회활동지원사업</li>
-                        <li>자원봉사 운영</li>
-                        <li>지역사회 연계</li>
-                    </ul>
-                </li>
-                <li><strong>문화건강팀</strong>
-                    <ul>
-                        <li>평생교육 프로그램</li>
-                        <li>건강증진 프로그램</li>
-                        <li>문화여가 프로그램</li>
-                        <li>체육활동 지원</li>
-                    </ul>
-                </li>
-                <li><strong>사례관리팀</strong>
-                    <ul>
-                        <li>통합사례관리</li>
-                        <li>상담서비스</li>
-                        <li>치매예방 프로그램</li>
-                        <li>정신건강 지원</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>과장/사회복지사</td>
+                                <td>이단비</td>
+                                <td>070-5143-0177</td>
+                                <td>복지과 운영 총괄, 사회복지실습지도</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     5: { // 운영지원팀
-        title: "운영지원팀",
+        title: "총무과 - 운영지원팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>시설 유지 관리
-                    <ul>
-                        <li>건물 및 시설물 점검</li>
-                        <li>설비 운영 및 관리</li>
-                        <li>수선 및 보수 작업</li>
-                    </ul>
-                </li>
-                <li>안전 관리
-                    <ul>
-                        <li>화재 및 안전 점검</li>
-                        <li>응급상황 대응</li>
-                        <li>안전교육 실시</li>
-                    </ul>
-                </li>
-                <li>환경 정비
-                    <ul>
-                        <li>청소 및 위생 관리</li>
-                        <li>조경 및 환경 관리</li>
-                        <li>폐기물 처리</li>
-                    </ul>
-                </li>
-                <li>차량 관리
-                    <ul>
-                        <li>차량 운행 및 정비</li>
-                        <li>송영 서비스</li>
-                        <li>외부 업무 지원</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>사무원</td>
+                                <td>김희은</td>
+                                <td>031-674-0794</td>
+                                <td>재정관리(수입원)&서무</td>
+                            </tr>
+                            <tr>
+                                <td>회계</td>
+                                <td>이은정</td>
+                                <td>070-5143-0171</td>
+                                <td>재정관리(지출원)</td>
+                            </tr>
+                            <tr>
+                                <td>회계</td>
+                                <td>박지현</td>
+                                <td>070-5143-3865</td>
+                                <td>재정관리(지출원)</td>
+                            </tr>
+                            <tr>
+                                <td>영양사</td>
+                                <td>김경희</td>
+                                <td>070-5143-0166</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리사</td>
+                                <td>김순옥</td>
+                                <td>-</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>박학숙</td>
+                                <td>-</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>권오선</td>
+                                <td>-</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>고미옥</td>
+                                <td>-</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>최성애</td>
+                                <td>-</td>
+                                <td>경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>영양사</td>
+                                <td>장영숙</td>
+                                <td>-</td>
+                                <td>공도 경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>구경란</td>
+                                <td>-</td>
+                                <td>공도 경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>안미향</td>
+                                <td>-</td>
+                                <td>공도 경로식당(유료, 무료급식)</td>
+                            </tr>
+                            <tr>
+                                <td>전담</td>
+                                <td>이경옥</td>
+                                <td>-</td>
+                                <td>건강한 아침 천원식당</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>안해숙</td>
+                                <td>-</td>
+                                <td>건강한 아침 천원식당</td>
+                            </tr>
+                            <tr>
+                                <td>조리원</td>
+                                <td>변다영</td>
+                                <td>-</td>
+                                <td>건강한 아침 천원식당</td>
+                            </tr>
+                            <tr>
+                                <td>시설관리</td>
+                                <td>임원석</td>
+                                <td>-</td>
+                                <td>시설&차량관리</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
-    6: { // 기획총무팀
-        title: "기획총무팀",
+    6: { // 기획홍보팀
+        title: "총무과 - 기획홍보팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>인사 관리
-                    <ul>
-                        <li>채용 및 인사발령</li>
-                        <li>급여 및 복리후생</li>
-                        <li>교육 및 연수</li>
-                    </ul>
-                </li>
-                <li>회계 관리
-                    <ul>
-                        <li>예산 편성 및 집행</li>
-                        <li>결산 및 재무 관리</li>
-                        <li>후원금 관리</li>
-                    </ul>
-                </li>
-                <li>기획 업무
-                    <ul>
-                        <li>사업계획 수립</li>
-                        <li>평가 및 보고</li>
-                        <li>정책 연구</li>
-                    </ul>
-                </li>
-                <li>행정 업무
-                    <ul>
-                        <li>문서 관리</li>
-                        <li>물품 구매</li>
-                        <li>계약 업무</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>팀장/사회복지사</td>
+                                <td>한아름</td>
+                                <td>070-5143-0161</td>
+                                <td>홍보, 자원봉사, 노인권익증진</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>이건우</td>
+                                <td>070-5143-0172</td>
+                                <td>후원&복리후생사업</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     7: { // 맞춤돌봄팀
-        title: "맞춤돌봄팀",
+        title: "복지과 - 맞춤돌봄팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>노인맞춤돌봄서비스
-                    <ul>
-                        <li>대상자 발굴 및 선정</li>
-                        <li>개인별 돌봄계획 수립</li>
-                        <li>직접서비스 제공</li>
-                        <li>연계서비스 조정</li>
-                    </ul>
-                </li>
-                <li>재가서비스
-                    <ul>
-                        <li>가사지원 서비스</li>
-                        <li>신체활동 지원</li>
-                        <li>일상생활 지원</li>
-                        <li>정서적 지원</li>
-                    </ul>
-                </li>
-                <li>응급안전안심서비스
-                    <ul>
-                        <li>응급상황 모니터링</li>
-                        <li>안전확인 서비스</li>
-                        <li>24시간 상황실 운영</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper" style="max-height: 400px; overflow-y: auto;">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>전담 사회복지사</td>
+                                <td>양덕미</td>
+                                <td>070-5143-0164</td>
+                                <td>노인맞춤돌봄서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>전담 사회복지사</td>
+                                <td>정이정</td>
+                                <td>070-5143-0165</td>
+                                <td>노인맞춤돌봄서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>전담 사회복지사</td>
+                                <td>최주현</td>
+                                <td>070-5143-2039</td>
+                                <td>노인맞춤돌봄서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>전담 사회복지사</td>
+                                <td>유정우</td>
+                                <td>070-5143-0168</td>
+                                <td>노인맞춤돌봄서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>전담 사회복지사</td>
+                                <td>박근순</td>
+                                <td>070-5143-0170</td>
+                                <td>노인맞춤돌봄서비스 특화사업</td>
+                            </tr>
+                            <tr>
+                                <td>응급관리요원</td>
+                                <td>한순희</td>
+                                <td>070-5143-0169</td>
+                                <td>응급안전안심서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>응급관리요원</td>
+                                <td>정성훈</td>
+                                <td>070-5143-2038</td>
+                                <td>응급안전안심서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>응급관리요원</td>
+                                <td>오미경</td>
+                                <td>070-5143-0169</td>
+                                <td>응급안전안심서비스사업</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>강경순</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>강미숙</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>강임선</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>윤귀자</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김경란</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김금숙</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김금순</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김동희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김미화1</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김미화2</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김선희1</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>임미라</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김병선</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김양순</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>주예식</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김영주</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김향분</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김호연</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>박미규</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>박영미</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>박영숙</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>백은수</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>백은영</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>손명순</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>송하윤</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>안경선</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>안승희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>안진옥</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>안효영</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>양순희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>오영애</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>오세정</td>
+                                <td>-</td>
+                                <td>취약독거노인안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>오현근</td>
+                                <td>-</td>
+                                <td>취약독거노인안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>윤경애</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>윤경희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>윤다연</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>윤치옥</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>이경희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>이종숙</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>이해경</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>임은조</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>임미화</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>장삼순</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>김은자</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>정경애</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>정인혜</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>정인호</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>지선영</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>최윤희</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                            <tr>
+                                <td>생활지원사</td>
+                                <td>허윤만</td>
+                                <td>-</td>
+                                <td>취약독거노인 안전확인 및 일상생활지원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     8: { // 사회참여팀
-        title: "사회참여팀",
+        title: "복지과 - 사회참여팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>노인일자리 사업
-                    <ul>
-                        <li>공익활동 운영</li>
-                        <li>사회서비스형 사업</li>
-                        <li>시장형 사업단 운영</li>
-                        <li>취업알선형 사업</li>
-                    </ul>
-                </li>
-                <li>사회활동지원사업
-                    <ul>
-                        <li>자원봉사 활동</li>
-                        <li>지역사회 참여</li>
-                        <li>세대간 교류</li>
-                        <li>사회공헌 활동</li>
-                    </ul>
-                </li>
-                <li>지역사회 연계
-                    <ul>
-                        <li>지역 네트워크 구축</li>
-                        <li>협력기관 연계</li>
-                        <li>자원 개발 및 활용</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>팀장/사회복지사</td>
+                                <td>고진아</td>
+                                <td>031-674-0796</td>
+                                <td>노인자원봉사, 선배시민</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>김정숙</td>
+                                <td>070-5143-0175</td>
+                                <td>노인일자리&노인사회활동</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>전혜림</td>
+                                <td>070-5143-0697</td>
+                                <td>노인일자리&노인사회활동</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>조가연</td>
+                                <td>070-5143-0176</td>
+                                <td>노인일자리&노인사회활동</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>한서희</td>
+                                <td>070-5143-0173</td>
+                                <td>노인일자리&노인사회활동</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     9: { // 문화건강팀
         title: "문화건강팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>평생교육 프로그램
-                    <ul>
-                        <li>교양강좌 운영</li>
-                        <li>취미활동 프로그램</li>
-                        <li>정보화 교육</li>
-                        <li>인문학 강좌</li>
-                    </ul>
-                </li>
-                <li>건강증진 프로그램
-                    <ul>
-                        <li>건강검진 서비스</li>
-                        <li>물리치료 서비스</li>
-                        <li>운동 프로그램</li>
-                        <li>영양 상담</li>
-                    </ul>
-                </li>
-                <li>문화여가 프로그램
-                    <ul>
-                        <li>문화공연 관람</li>
-                        <li>나들이 프로그램</li>
-                        <li>동아리 활동</li>
-                        <li>축제 및 행사</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>팀장/사회복지사</td>
+                                <td>박효진</td>
+                                <td>070-5143-0160</td>
+                                <td>평생교육, 동아리</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>김규림</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>실장/간호사</td>
+                                <td>김경자</td>
+                                <td>070-5143-0167</td>
+                                <td>건강증진지원</td>
+                            </tr>
+                            <tr>
+                                <td>물리치료사</td>
+                                <td>안수진</td>
+                                <td>-</td>
+                                <td>기능회복지원</td>
+                            </tr>
+                            <tr>
+                                <td>노인전문상담사</td>
+                                <td>박도영</td>
+                                <td>031-673-5590</td>
+                                <td>노인전문상담센터</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     },
     10: { // 사례관리팀
         title: "사례관리팀",
         content: `
-            <h4>주요업무</h4>
-            <ul>
-                <li>통합사례관리
-                    <ul>
-                        <li>복합적 욕구 사정</li>
-                        <li>서비스 계획 수립</li>
-                        <li>자원 연계 및 조정</li>
-                        <li>사후 관리</li>
-                    </ul>
-                </li>
-                <li>상담서비스
-                    <ul>
-                        <li>개인 상담</li>
-                        <li>가족 상담</li>
-                        <li>집단 상담</li>
-                        <li>위기개입 상담</li>
-                    </ul>
-                </li>
-                <li>치매예방 프로그램
-                    <ul>
-                        <li>인지능력 향상</li>
-                        <li>치매예방 교육</li>
-                        <li>가족 지원</li>
-                    </ul>
-                </li>
-                <li>정신건강 지원
-                    <ul>
-                        <li>우울증 예방</li>
-                        <li>심리상담</li>
-                        <li>정신건강 교육</li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="staff-info-section">
+                <h4>직원 정보</h4>
+                <div class="staff-table-wrapper">
+                    <table class="staff-detail-table">
+                        <thead>
+                            <tr>
+                                <th>직위</th>
+                                <th>성명</th>
+                                <th>전화번호</th>
+                                <th>업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>팀장/사회복지사</td>
+                                <td>김사랑</td>
+                                <td>070-5143-0174</td>
+                                <td>재가복지, 사례관리</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>손수빈</td>
+                                <td>070-5143-0162</td>
+                                <td>식사배달, 무료급식, 사례관리</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>박경수</td>
+                                <td>070-5143-0698</td>
+                                <td>이동세탁</td>
+                            </tr>
+                            <tr>
+                                <td>사회복지사</td>
+                                <td>남윤택</td>
+                                <td>070-5143-3313</td>
+                                <td>공도 식사배달, 무료급식, 사례관리</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `
     }
 };
@@ -610,13 +950,67 @@ function show_history(num) {
     const data = orgData[num];
     if (!data) return;
     
-    document.querySelector('.orgac_tit').textContent = data.title;
-    document.querySelector('.organ_pop_txt').innerHTML = data.content;
-    document.querySelector('.organ_pop_wrap').style.display = 'block';
+    const titleElement = document.querySelector('.orgac_tit');
+    const contentElement = document.querySelector('.organ_pop_txt');
+    const popupElement = document.querySelector('.organ_pop_wrap');
+    
+    if (!titleElement || !contentElement || !popupElement) return;
+    
+    titleElement.textContent = data.title;
+    contentElement.innerHTML = data.content;
+    popupElement.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
-// 팝업 닫기
+// 반응형 이미지맵 좌표 조정 함수
+function resizeImageMap() {
+    const img = document.getElementById('img01');
+    const map = document.querySelector('map[name="img01Map"]');
+    
+    if (!img || !map) return;
+    
+    // 원본 이미지 크기 - 실제 조직도 이미지 크기 (첨부된 이미지 기준)
+    const originalWidth = 880; // 실제 이미지 너비
+    const originalHeight = 754; // 실제 이미지 높이
+    
+    // 현재 표시된 이미지 크기
+    const currentWidth = img.clientWidth;
+    const currentHeight = img.clientHeight;
+    
+    // 비율 계산
+    const scaleX = currentWidth / originalWidth;
+    const scaleY = currentHeight / originalHeight;
+    
+    // 모든 area 요소의 좌표 조정
+    const areas = map.querySelectorAll('area');
+    
+    // 원본 좌표 (최초 한 번만 저장)
+    if (!map.dataset.originalCoords) {
+        const originalCoords = [];
+        areas.forEach(area => {
+            originalCoords.push(area.getAttribute('coords'));
+        });
+        map.dataset.originalCoords = JSON.stringify(originalCoords);
+    }
+    
+    // 저장된 원본 좌표 사용
+    const originalCoords = JSON.parse(map.dataset.originalCoords);
+    
+    areas.forEach((area, index) => {
+        if (originalCoords[index]) {
+            const coords = originalCoords[index].split(',');
+            const newCoords = coords.map((coord, i) => {
+                const scale = i % 2 === 0 ? scaleX : scaleY; // 짝수: x좌표, 홀수: y좌표
+                return Math.round(parseFloat(coord) * scale);
+            });
+            area.setAttribute('coords', newCoords.join(','));
+        }
+    });
+    
+
+}
+
+// 팝업 닫기 및 초기화
 document.addEventListener('DOMContentLoaded', function() {
     const popupWrap = document.querySelector('.organ_pop_wrap');
     const closeBtn = document.querySelector('.orgac_close');
@@ -636,5 +1030,20 @@ document.addEventListener('DOMContentLoaded', function() {
             closePopup();
         }
     });
+    
+    // 이미지 로드 후 이미지맵 좌표 조정
+    const orgImg = document.getElementById('img01');
+    if (orgImg) {
+        if (orgImg.complete) {
+            resizeImageMap();
+        } else {
+            orgImg.addEventListener('load', resizeImageMap);
+        }
+        
+        // 윈도우 리사이즈 시에도 좌표 조정
+        window.addEventListener('resize', function() {
+            resizeImageMap();
+        });
+    }
 });
 </script>
