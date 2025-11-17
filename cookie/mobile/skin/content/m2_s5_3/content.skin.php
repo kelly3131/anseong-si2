@@ -104,13 +104,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$content_skin_url.'/style.css">',
 
         <div class="image-grid">
             <div class="image-item">
-                <span>IoT 장비 사진</span>
+                <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m2/m2_s5_3_img1.png" alt="">
             </div>
             <div class="image-item">
-                <span>설치 현장</span>
+                <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m2/m2_s5_3_img2.png" alt="">
             </div>
             <div class="image-item">
-                <span>관제센터</span>
+                <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m2/m2_s5_3_img3.png" alt="">
+            </div>
+            <div class="image-item">
+                <img src="<?php echo G5_THEME_IMG_URL ?>/mobile/sub/m2/m2_s5_3_img4.png" alt="">
             </div>
         </div>
     </div>
