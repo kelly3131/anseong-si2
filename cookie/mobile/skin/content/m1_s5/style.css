@@ -142,66 +142,57 @@
     border-collapse: collapse !important;
 }
 
-/* 매우 강력한 CSS 선택자로 직원현황 테이블 스타일 강제 적용 */
-.content-card .business-content .info-section .staff-statistics table.organ_table1 {
-    width: 100% !important;
-    border-collapse: collapse !important;
-    margin: 0 !important;
-    background: #ffffff !important;
-    border: 2px solid #4a90e2 !important;
-    border-radius: 8px !important;
-    overflow: hidden !important;
-    font-family: 'Noto Sans KR', sans-serif !important;
-}
-
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody {
-    background: #fff !important;
-}
-
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr {
-    background: #fff !important;
-}
-
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr th,
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr td {
-    padding: 12px 8px !important;
-    text-align: center !important;
+/* 새로운 깔끔한 직원현황 테이블 스타일 */
+.table-scroll-wrapper {
+    overflow-x: auto;
     border: 1px solid #ddd !important;
+    margin: 20px 0 !important;
+}
+
+.organ_table1 {
+    width: 100% !important;
+    min-width: 800px !important;
+    border-collapse: collapse !important;
+    background: #fff !important;
     font-size: 13px !important;
-    line-height: 1.4 !important;
-    vertical-align: middle !important;
+    border: none !important;
+}
+
+.organ_table1 th {
+    background: #f8f8f8 !important;
     color: #333 !important;
-    font-weight: normal !important;
+    padding: 12px 8px !important;
+    border: 1px solid #ddd !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    border-top: none !important;
 }
 
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr th {
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%) !important;
-    color: #ffffff !important;
-    font-weight: bold !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+.organ_table1 td {
+    padding: 10px 8px !important;
+    border: 1px solid #ddd !important;
+    text-align: center !important;
+    background: #fff !important;
+    white-space: nowrap !important;
+    border-top: none !important;
 }
 
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr:nth-child(2) td {
-    background: #f8f9fa !important;
-    color: #333 !important;
-    font-weight: normal !important;
+.organ_table1 th:first-child,
+.organ_table1 td:first-child {
+    background: #f8f8f8 !important;
+    font-weight: 500 !important;
+    border-left: none !important;
 }
 
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr:nth-child(4) td {
-    background: #f0f8ff !important;
-    color: #333 !important;
-    font-weight: normal !important;
+.organ_table1 th:last-child,
+.organ_table1 td:last-child {
+    border-right: none !important;
 }
 
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr td:last-child {
-    font-weight: bold !important;
-    background: #fff3cd !important;
-    color: #856404 !important;
-    font-size: 15px !important;
-}
-
-.content-card .business-content .info-section .staff-statistics table.organ_table1 tbody tr:hover td {
-    background: #e3f2fd !important;
+.organ_table1 tr:last-child th,
+.organ_table1 tr:last-child td {
+    border-bottom: none !important;
 }
 
 /* 테이블 제목 스타일 */
@@ -216,49 +207,7 @@
     border-radius: 5px !important;
 }
 
-.staff-statistics table.organ_table1,
-table.organ_table1 {
-    width: 100% !important;
-    border-collapse: collapse !important;
-    margin: 15px 0 !important;
-    background: #fff !important;
-    font-family: inherit !important;
-    border: none !important;
-}
-
-.staff-statistics table.organ_table1 th,
-.staff-statistics table.organ_table1 td,
-table.organ_table1 th,
-table.organ_table1 td {
-    padding: 12px 8px !important;
-    text-align: center !important;
-    border: 1px solid #ddd !important;
-    font-size: 13px !important;
-    line-height: 1.4 !important;
-    vertical-align: middle !important;
-}
-
-.staff-statistics table.organ_table1 th,
-table.organ_table1 th {
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%) !important;
-    color: #fff !important;
-    font-weight: bold !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.staff-statistics table.organ_table1 tr:nth-child(odd) td,
-table.organ_table1 tr:nth-child(odd) td {
-    background: #fff !important;
-}
-
-.staff-statistics table.organ_table1 tr:nth-child(even) td,
-table.organ_table1 tr:nth-child(even) td {
-    background: #f8f9fa !important;
-}
-
-.staff-statistics table.organ_table1 tr:hover td,
-table.organ_table1 tr:hover td {
-    background: #e3f2fd !important;
+/* 기존 스타일 제거됨 */
 }
 
 .staff-statistics table.organ_table1 td:last-child,
@@ -282,8 +231,9 @@ table.organ_table1 tbody tr:nth-child(3) td:last-child {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #ddd;
 }
 
 .organ_table1 {
@@ -291,19 +241,20 @@ table.organ_table1 tbody tr:nth-child(3) td:last-child {
     min-width: 800px; /* 최소 너비 설정으로 가로 스크롤 유도 */
     border-collapse: collapse;
     background: #fff;
-    border: 2px solid #4a90e2;
-    font-size: 14px;
+    border: none;
+    font-size: 13px;
 }
 
 .organ_table1 th {
-    background: #4a90e2;
-    color: #fff;
+    background: #f8f8f8;
+    color: #333;
     padding: 12px 8px;
-    border: 1px solid #3a7bc8;
+    border: 1px solid #ddd;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
     min-width: 60px;
+    border-top: none;
 }
 
 .organ_table1 td {
@@ -313,50 +264,71 @@ table.organ_table1 tbody tr:nth-child(3) td:last-child {
     background: #fff;
     white-space: nowrap;
     min-width: 60px;
+    border-top: none;
 }
 
-.organ_table1 tr:nth-child(even) td {
-    background: #f9f9f9;
+/* 첫 번째 열(구분) 스타일 */
+.organ_table1 th:first-child,
+.organ_table1 td:first-child {
+    background: #f8f8f8;
+    font-weight: 500;
+    border-left: none;
 }
 
-.organ_table1 tr:hover td {
-    background: #f0f7ff;
+/* 마지막 열 스타일 */
+.organ_table1 th:last-child,
+.organ_table1 td:last-child {
+    border-right: none;
+}
+
+/* 테이블 하단 경계선 제거 */
+.organ_table1 tr:last-child th,
+.organ_table1 tr:last-child td {
+    border-bottom: none;
+}
+
+/* 호버 효과 */
+.organ_table1 tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.organ_table1 tbody tr:hover td {
+    background-color: #f9f9f9;
+}
+
+.organ_table1 tbody tr:hover td:first-child {
+    background-color: #f0f0f0;
 }
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
     .table-scroll-wrapper {
-        margin: 15px -10px; /* 좌우 여백 제거로 더 넓은 공간 확보 */
-        border-radius: 0;
+        margin: 15px -10px !important;
+        border-radius: 0 !important;
     }
     
     .organ_table1 {
-        min-width: 1000px; /* 모바일에서 더 넓은 최소 너비 */
-        font-size: 12px;
+        min-width: 1000px !important;
+        font-size: 12px !important;
     }
     
     .organ_table1 th,
     .organ_table1 td {
-        padding: 8px 6px;
-        min-width: 50px;
-    }
-    
-    .organ_table1 th {
-        font-size: 11px;
-        line-height: 1.2;
+        padding: 8px 6px !important;
+        font-size: 12px !important;
     }
 }
 
 @media (max-width: 480px) {
     .organ_table1 {
-        min-width: 1200px; /* 작은 화면에서 더 넓은 최소 너비 */
-        font-size: 11px;
+        min-width: 1200px !important;
+        font-size: 11px !important;
     }
     
     .organ_table1 th,
     .organ_table1 td {
-        padding: 6px 4px;
-        min-width: 45px;
+        padding: 6px 4px !important;
+        font-size: 11px !important;
     }
 }
 
@@ -371,214 +343,15 @@ table.organ_table1 tbody tr:nth-child(3) td:last-child {
 }
 
 .table-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #4a90e2;
+    background: #ccc;
     border-radius: 4px;
 }
 
 .table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #3a7bc8;
+    background: #999;
 }
 
-/* 조직도 팝업 */
-.organ_pop_wrap {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-}
-
-.orgac_bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    cursor: pointer;
-}
-
-.organ_pop_con {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    overflow: hidden;
-}
-
-.organ_pop_top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 25px;
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-    color: #fff;
-}
-
-.orgac_tit {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.orgac_close {
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px 8px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    margin: 0;
-    line-height: 1;
-}
-
-.orgac_close:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.organ_pop_txt {
-    padding: 25px;
-    max-height: 60vh;
-    overflow-y: auto;
-    line-height: 1.6;
-}
-
-.organ_pop_txt h4 {
-    color: #4a90e2;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 20px 0 15px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.organ_pop_txt h4:first-child {
-    margin-top: 0;
-}
-
-.organ_pop_txt ul {
-    margin: 10px 0;
-    padding-left: 20px;
-}
-
-.organ_pop_txt li {
-    margin: 8px 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.organ_pop_txt ul ul {
-    margin: 5px 0;
-    padding-left: 20px;
-}
-
-.organ_pop_txt ul ul li {
-    margin: 5px 0;
-    font-size: 13px;
-    color: #666;
-}
-
-.organ_pop_txt strong {
-    color: #2c3e50;
-}
-
-/* 팝업 내 직원 정보 테이블 스타일 */
-.staff-info-section {
-    padding: 0;
-}
-
-.staff-info-section h4 {
-    color: #4a90e2;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 20px 0 15px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.staff-info-section h4:first-child {
-    margin-top: 0;
-}
-
-.staff-table-wrapper {
-    overflow-x: auto;
-    margin: 15px 0;
-}
-
-.staff-detail-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
-
-.staff-detail-table th {
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-    color: white;
-    padding: 12px 8px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    border: 1px solid #357abd;
-}
-
-.staff-detail-table td {
-    padding: 10px 8px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.staff-detail-table tr:nth-child(even) {
-    background: #f8f9fa;
-}
-
-.staff-detail-table tr:hover {
-    background: #e3f2fd;
-}
-
-.duty-list {
-    margin: 10px 0;
-    padding-left: 20px;
-}
-
-.duty-list li {
-    margin: 8px 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.team-info {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #4a90e2;
-}
-
-.team-info p {
-    margin: 0 0 10px 0;
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-.team-info .duty-list {
-    margin: 0;
-}
-
-/* 반응형 */
+/* 모바일 대응 */
 @media (max-width: 768px) {
     .staff-statistics table.organ_table1,
     table.organ_table1 {
@@ -688,5 +461,209 @@ table.organ_table1 tbody tr:nth-child(3) td:last-child {
     .duty-list {
         font-size: 12px;
         padding-left: 15px;
+    }
+}
+
+/* 팝업 스타일 */
+.organ_pop_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.orgac_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.organ_pop_con {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+    z-index: 10000;
+    animation: popupFadeIn 0.3s ease-out;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.organ_pop_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.orgac_tit {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.orgac_close {
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    margin: 0;
+    padding: 5px 10px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.orgac_close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.organ_pop_txt {
+    padding: 25px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* 팝업 내부 테이블 스타일 (직원현황 테이블과 동일) */
+.organ_pop_txt .staff-info-section h4 {
+    color: #4a90e2 !important;
+    font-size: 16px !important;
+    margin: 0 0 15px 0 !important;
+    font-weight: 600 !important;
+}
+
+.organ_pop_txt .staff-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #ddd !important;
+    margin: 20px 0 !important;
+}
+
+.organ_pop_txt .staff-detail-table {
+    width: 100% !important;
+    min-width: 500px !important;
+    border-collapse: collapse !important;
+    background: #fff !important;
+    font-size: 13px !important;
+    border: none !important;
+}
+
+.organ_pop_txt .staff-detail-table thead {
+    border-bottom: 1px solid #ddd !important;
+}
+
+.organ_pop_txt .staff-detail-table th {
+    background: #f8f8f8 !important;
+    color: #333 !important;
+    padding: 12px 8px !important;
+    border: 1px solid #ddd !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    border-top: none !important;
+}
+
+.organ_pop_txt .staff-detail-table td {
+    padding: 10px 8px !important;
+    border: 1px solid #ddd !important;
+    text-align: center !important;
+    background: #fff !important;
+    white-space: nowrap !important;
+    border-top: none !important;
+}
+
+.organ_pop_txt .staff-detail-table th:first-child {
+    background: #f8f8f8 !important;
+    font-weight: 500 !important;
+    border-left: none !important;
+}
+
+.organ_pop_txt .staff-detail-table td:first-child {
+    font-weight: 500 !important;
+    border-left: none !important;
+}
+
+.organ_pop_txt .staff-detail-table th:last-child,
+.organ_pop_txt .staff-detail-table td:last-child {
+    border-right: none !important;
+}
+
+.organ_pop_txt .staff-detail-table tr:last-child th,
+.organ_pop_txt .staff-detail-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .organ_pop_con {
+        max-width: 95%;
+        max-height: 95%;
+        margin: 20px;
+    }
+    
+    .organ_pop_top {
+        padding: 15px 20px;
+    }
+    
+    .orgac_tit {
+        font-size: 18px;
+    }
+    
+    .orgac_close {
+        font-size: 24px;
+        padding: 3px 8px;
+    }
+    
+    .organ_pop_txt {
+        padding: 20px;
+        max-height: 75vh;
+    }
+    
+    /* 모바일에서 팝업 테이블 스타일 조정 */
+    .organ_pop_txt .staff-detail-table {
+        min-width: 400px !important;
+        font-size: 11px !important;
+    }
+    
+    .organ_pop_txt .staff-detail-table th,
+    .organ_pop_txt .staff-detail-table td {
+        padding: 8px 4px !important;
+        font-size: 10px !important;
+    }
+    
+    .organ_pop_txt .staff-info-section h4 {
+        font-size: 14px !important;
     }
 }

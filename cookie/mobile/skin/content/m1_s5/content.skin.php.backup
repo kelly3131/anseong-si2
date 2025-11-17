@@ -66,7 +66,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$content_skin_url.'/style.css">',
                                 <area shape="rect" coords="721,60,855,100" onclick="show_history(10)" class="organ_maps" title="사례관리팀">
                             </map>
                         </div>  
+                    
                     </div>  
+                    
                 </div>
             </div>
 
@@ -945,40 +947,19 @@ const orgData = {
 
 // 조직도 팝업 기능
 function show_history(num) {
-    console.log('show_history 호출됨:', num); // 디버그용
-    
     const data = orgData[num];
-    if (!data) {
-        console.error('데이터를 찾을 수 없습니다:', num);
-        return;
-    }
+    if (!data) return;
     
     const titleElement = document.querySelector('.orgac_tit');
     const contentElement = document.querySelector('.organ_pop_txt');
     const popupElement = document.querySelector('.organ_pop_wrap');
     
-    console.log('팝업 요소들:', { titleElement, contentElement, popupElement });
-    
-    if (!titleElement || !contentElement || !popupElement) {
-        console.error('팝업 요소를 찾을 수 없습니다');
-        return;
-    }
-    
-    // 모바일 스크롤 방지를 위한 처리
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-    
-    // 현재 스크롤 위치 저장
-    popupElement.dataset.scrollY = scrollY;
+    if (!titleElement || !contentElement || !popupElement) return;
     
     titleElement.textContent = data.title;
     contentElement.innerHTML = data.content;
-    popupElement.style.display = 'flex';
-    
-    console.log('팝업이 표시되어야 합니다');
+    popupElement.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
 // 반응형 이미지맵 좌표 조정 함수
@@ -1025,6 +1006,8 @@ function resizeImageMap() {
             area.setAttribute('coords', newCoords.join(','));
         }
     });
+    
+
 }
 
 // 팝업 닫기 및 초기화
@@ -1034,43 +1017,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const bgClose = document.querySelector('.orgac_bg');
     
     function closePopup() {
-        if (popupWrap) {
-            // 저장된 스크롤 위치 복원
-            const scrollY = popupWrap.dataset.scrollY || 0;
-            
-            popupWrap.style.display = 'none';
-            
-            // 모바일 스크롤 방지 해제
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            document.body.style.overflow = '';
-            
-            // 원래 스크롤 위치로 복원
-            window.scrollTo(0, parseInt(scrollY));
-        }
-    }
-    
-    // 팝업 배경 터치 스크롤 방지
-    function preventScroll(e) {
-        if (popupWrap && popupWrap.style.display === 'flex') {
-            if (e.target === bgClose) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }
+        popupWrap.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
     if (closeBtn) closeBtn.addEventListener('click', closePopup);
-    if (bgClose) {
-        bgClose.addEventListener('click', closePopup);
-        bgClose.addEventListener('touchmove', preventScroll, { passive: false });
-        bgClose.addEventListener('touchstart', preventScroll, { passive: false });
-    }
+    if (bgClose) bgClose.addEventListener('click', closePopup);
     
     // ESC 키로 팝업 닫기
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && popupWrap && (popupWrap.style.display === 'flex' || popupWrap.style.display === 'block')) {
+        if (e.key === 'Escape' && popupWrap.style.display === 'block') {
             closePopup();
         }
     });
